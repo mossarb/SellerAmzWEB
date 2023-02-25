@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<div lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://kit.fontawesome.com/40da6b2c92.js" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <!DOCTYPE html>
+<html>
+<head>
+	<title>Right-click menu</title>
+	<style>
+		.dropdown-menu {
+			display: none;
+			position: absolute;
+			background-color: #f9f9f9;
+			min-width: 150px;
+            text-align: center;
+            align-items: center;
+			box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+			z-index: 9999;
+		}
+
+		.dropdown-menu a {
+			color: black;
+			padding: 12px 16px;
+			text-decoration: none;
+			display: block;
+		}
+
+		.dropdown-menu a:hover {
+			background-color: #f1f1f1;
+		}
+	</style>
+</head>
+<body>
+	<ul class="dropdown-menu" id="myDropdown">
+		<li style="color: rgb(30, 118, 233);" onclick="location.reload()"><i class="fa-solid fa-rotate-right" style="padding-right: 10px;"></i>Sayfayı yenile</li>
+		<li style="color: rgb(30, 118, 233);"><i class="fa fa-arrow-left" style="padding-right: 10px;"></i> Geri</li>
+		<li><a href="#">Link 3</a></li>
+	</ul>
+
+	<script>
+		document.addEventListener("mousedown", function(event) {
+			var dropdownMenu = document.getElementById("myDropdown");
+			if (event.target.closest(".dropdown-menu") !== dropdownMenu) {
+				dropdownMenu.style.display = "none";
+			}
+		});
+
+		document.addEventListener("contextmenu", function(event) {
+			event.preventDefault();
+			var dropdownMenu = document.getElementById("myDropdown");
+			dropdownMenu.style.display = "block";
+			dropdownMenu.style.left = event.pageX + "px";
+			dropdownMenu.style.top = event.pageY + "px";
+		});
+	</script>
+</body>
+</html>
+
+</body>
+</html>

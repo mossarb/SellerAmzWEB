@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Fikir üret | Bastoliday</title>
+  <meta charset="utf-8">
+  <script src="https://kit.fontawesome.com/40da6b2c92.js" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <button class="button btn btn-primary btn-lg"><i class="fa fa-plus"></i> FİKİR ÜRET</button>
+
+    <style>
+        .button {
+            outline: none;
+            position: relative;
+            height: 50px;
+            width: 200px;
+            top: calc(50vh - 25px);
+            left: calc(50vw - 100px);
+            background-image: none;
+            border: none;
+            outline: none;
+            background-color: #f56464;
+            color: white;
+            text-transform: uppercase;
+            font-size: 20px;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: all 0.2s ease-out;
+        }
+        .button::after {
+            outline: none;
+            content: '';
+            display: block;
+            position: absolute;
+            width: 160px;
+            height: 40px;
+            background-color: black;
+            z-index: -1;
+            left: calc(50% - 80px);
+            top: 10px;
+            opacity: 0.3;
+            filter: blur(5px);
+            transition: all 0.2s ease-out;
+        }
+        .button:hover::after {
+            opacity: 0.5;
+            outline: none;
+            filter: blur(20px);
+            transform: translatey(10px) scalex(1.2);
+        }
+        .button:active {
+            outline: none;
+            background-color: #dd4b4b;
+        }
+        .button:active::after {
+            outline: none;
+            opacity: 0.3;
+        }
+        .loading {
+            border-radius: 50px;
+            width: 50px;
+            left: calc(50vw - 25px);
+            outline: none;
+        }
+        .button.loading::after {
+            width: 40px;
+            left: 5px;
+            top: 12px;
+            border-radius: 100%;
+            outline: none;
+        }
+        .spinner {
+            outline: none;
+            display: block;
+            width: 34px;
+            height: 34px;
+            position: absolute;
+            top: 8px;
+            left: calc(50% - 17px);
+            background: transparent;
+            box-sizing: border-box;
+            border-top: 4px solid white;
+            border-left: 4px solid transparent;
+            border-right: 4px solid transparent;
+            border-bottom: 4px solid transparent;
+            border-radius: 100%;
+            animation: spin 0.6s ease-out infinite;
+        }
+        @keyframes spin {
+            100% {transform: rotate(360deg)}
+        }
+    </style>
+    <script>
+      var button = $('.button'),
+		  spinner = '<span class="spinner"></span>';
+
+      button.click(function() {
+        if (!button.hasClass('loading')) {
+          button.toggleClass('loading').html(spinner);
+          setTimeout(function() {
+            window.location.href = "/create_idea.html";
+          }, 6000);
+        }
+        else {
+          button.toggleClass('loading').html("<i class='fa fa-plus'></i> FİKİR ÜRET");
+        }
+      })
+    </script>
+</body>
+</html>

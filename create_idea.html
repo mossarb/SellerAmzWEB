@@ -1,0 +1,118 @@
+﻿<!DOCTYPE html>
+<html ng-app="mySuperApp">
+<head>
+  <title>Fikir üret | Bastoliday</title>
+  <link href="//code.ionicframework.com/nightly/css/ionic.css" rel="stylesheet">
+  <script src="//code.ionicframework.com/nightly/js/ionic.bundle.js"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script>
+	var randomNumber = Math.floor(Math.random() * 1000000000000000000000000000000000);
+	var randomNumberTue = Math.floor(Math.random() * 1000000); 
+	var currentUrl = "create_idea?result==&bastoliday-security&=";
+	var currentUrlTue = "%security%plus%pack%salihbastan&&url=create_idea+security%plus%pack+mkss=";  // mevcut URL'i al
+	var newUrl = currentUrl + randomNumber + currentUrlTue + randomNumberTue;  // rastgele sayıyı URL'in sonuna ekle
+	window.history.pushState("object or string", "Title", newUrl);  // URL'i değiştir
+  
+	angular.module('mySuperApp', ['ionic'])
+.controller('PopupCtrl',function($scope, $ionicPopup, $timeout) {
+
+ // Triggered on a button click, or some other target
+ $scope.showPopup = function() {
+   $scope.data = {}
+
+   // An elaborate, custom popup
+   var myPopup = $ionicPopup.show({
+     template: '<input type="password" ng-model="data.wifi">',
+     title: 'Enter Wi-Fi Password',
+     subTitle: 'Please use normal things',
+     scope: $scope,
+     buttons: [
+       { text: 'Cancel' },
+       {
+         text: '<b>Save</b>',
+         type: 'button-positive',
+         onTap: function(e) {
+           if (!$scope.data.wifi) {
+             //don't allow the user to close unless he enters wifi password
+             e.preventDefault();
+           } else {
+             return $scope.data.wifi;
+           }
+         }
+       },
+     ]
+   });
+   myPopup.then(function(res) {
+     console.log('Tapped!', res);
+   });
+   $timeout(function() {
+      myPopup.close(); //close the popup after 3 seconds for some reason
+   }, 3000);
+  };
+   // A confirm dialog
+   $scope.showConfirm = function() {
+     var confirmPopup = $ionicPopup.confirm({
+       title: "Çıkış yapılsın mı?",
+       template: "Yeni fikir iptal edilecek ve çıkış yapılacak."
+     });
+     confirmPopup.then(function(res) {
+       if(res) {
+         console.log('Çıkış yapılıyor..');
+		 var spinner = document.createElement("div");
+			spinner.className = "spinner-overlay";
+			spinner.innerHTML = '<div class="text-center"><div class="spinner-border" role="status"><span class="visually-hidden"></span></div></div>';
+			document.body.appendChild(spinner);
+
+			// Alert göster
+			setTimeout(function() {
+				window.location.href = "/index.html";
+			}, 7000);
+       } else {
+         console.log('Çıkış yapılmıyor.');
+       }
+     });
+   };
+});
+
+</script>	
+  <style>
+    .header {
+			position: fixed;
+			bottom: 0;
+			left: 0;
+			width: 100%;
+			height: 75px;
+			background-color: rgba(236, 235, 235, 0.541);
+			backdrop-filter: blur(10px);
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			z-index: 9999;
+		}	
+		.spinner-overlay {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background-color: rgba(220, 220, 220, 0.2);
+			backdrop-filter: blur(10px);
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			z-index: 999999;
+		}  
+  </style>
+</head>
+<body class="padding" ng-controller="PopupCtrl">
+  <div class="header">
+		<button class="btn btn-danger" ng-click="showConfirm()">İptal et ve Geri Dön</button>		  
+	</div>
+  <iframe style="border-radius: 15px; outline: none; border: none;" src="https://tally.so/r/mOaQ8K" width="100%" height="650px"></iframe>
+</body>
+</html>

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fikir Sorgula | Bastoliday</title>
+    <script src="https://kit.fontawesome.com/40da6b2c92.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.all.min.js"></script>
+    <script>
+        var randomNumber = Math.floor(Math.random() * 1000000000000000000000000000000000);
+        var randomNumberTue = Math.floor(Math.random() * 1000000); 
+        var currentUrl = "idea_E54?result==&bastoliday-security&=";
+        var currentUrlTue = "%security%plus%pack%salihbastan&&url=idea_E54+security%plus%pack+mkss=";  // mevcut URL'i al
+        var newUrl = currentUrl + randomNumber + currentUrlTue + randomNumberTue;  // rastgele sayıyı URL'in sonuna ekle
+        window.history.pushState("object or string", "Title", newUrl);  // URL'i değiştir
+    </script>
+</head>
+<body>
+    <h2 style="padding-left: 7%; padding-top: 4%;">Fikir Hakkında Bilgi Alın</h2>
+    <hr>
+    <form>
+    <div class="mb-3" style="padding: 3%;">
+        <label for="formGroupExampleInput" class="form-label">Fikir ID</label>
+        <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Fikir ID ...">
+      </div>
+      <div class="d-grid gap-2" style="padding-top: 5px; padding-left: 3%;">
+        <button class="btn btn-primary" type="button" onclick="submitForm()"><i class="fa-solid fa-magnifying-glass"></i> Sorgula</button>
+        <button class="btn btn-danger" type="reset"><i class="fa fa-trash"></i> Temizle</button>
+      </div>
+    </form>
+    <br/>
+    <br/>
+    <table class="table" style="padding: 3%;">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Başlık</th>
+            <th scope="col">Açıklama</th>
+            <th scope="col">Beğeni</th>
+            <th scope="col">Şikayet</th>
+            <th scope="col">Görüntüleme</th>
+            <th scope="col">Öne Çıkarma</th>
+            <th scope="col">Daha Fazla</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td id="textID">-</td>
+            <td id="textTitle">-</td>
+            <td id="textDesp">-</td>
+            <td id="textLike">-</td>
+            <td id="textSikayet">-</td>
+            <td id="textPrew">-</td>
+            <td id="textOneCikarma">-</td>
+            <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Daha Fazla</button></td>
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="myModalLabel">Fikir Detayları</h5>
+                    <button type="button" style="outline: 0;" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true" style="outline: 0;">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <strong>Fikir ID: </strong><p id="modalID">-</p><br/>
+                    <strong>Fikir Başlığı: </strong><p id="modalTitle">-</p><br/>
+                    <strong>Fikir Açıklaması: </strong><p id="modalDesp">-</p><br/>
+                    <strong>Fikir Beğenisi: </strong><p id="modalLike">-</p><br/>
+                    <strong>Fikir Şikayeti: </strong><p id="modalSikayet">-</p><br/>
+                    <strong>Fikir Görüntülemesi: </strong><p id="modalPrew">-</p><br/>
+                    <strong>Fikir Öne Çıkarması: </strong><p id="modalOneCikarma">-</p><br/>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
+                    <button type="button" class="btn btn-primary" onclick="extFunc()">Sıfırla</button>
+                  </div>
+          </tr>
+        </tbody>
+      </table>
+
+<script>
+    function submitForm() {
+        var input = document.getElementById("formGroupExampleInput").value;
+        var id = document.getElementById("textID");
+        var title = document.getElementById("textTitle");
+        var desp = document.getElementById("textDesp");
+        var like = document.getElementById("textLike");
+        var sikayet = document.getElementById("textSikayet");
+        var prew = document.getElementById("textPrew");
+        var oneCikar = document.getElementById("textOneCikarma");
+        var mid = document.getElementById("modalID");
+        var mtitle = document.getElementById("modalTitle");
+        var mdesp = document.getElementById("modalDesp");
+        var mlike = document.getElementById("modalLike");
+        var msikayet = document.getElementById("modalSikayet");
+        var mprew = document.getElementById("modalPrew");
+        var moneCikar = document.getElementById("modalOneCikarma");
+
+        function extFunc() {
+          id.innerHTML = "-";
+          title.innerHTML = "-";
+          desp.innerHTML = "-";
+          like.innerHTML = "-";
+          sikayet.innerHTML = "-";
+          prew.innerHTML = "-";
+          oneCikar.innerHTML = "-";
+
+          mid.innerHTML = "-";
+          mtitle.innerHTML = "-";
+          mdesp.innerHTML = "-";
+          mlike.innerHTML = "-";
+          msikayet.innerHTML = "-";
+          mprew.innerHTML = "-";
+          moneCikar.innerHTML = "-";
+
+          swal (
+            "Başarılı!",
+            "İşleminiz başarıyla gerçekleştirildi.",
+            "success"
+          )
+        }
+
+        if (input == "00541278637") {
+            id.innerHTML = "0054...";
+            title.innerHTML = "Sesl...";
+            desp.innerHTML = "Otop...";
+            like.innerHTML = "471";
+            sikayet.innerHTML = "0";
+            prew.innerHTML = "1736";
+            oneCikar.innerHTML = "Pasif";
+
+            mid.innerHTML = "00541278637";
+            mtitle.innerHTML = "Sesli Otopark";
+            mdesp.innerHTML = "Otoparka girdiğimiz anda bize nerede boş yer var ise sesli yönlendirme yapacak. Arabamızın plakasını alacak ve o plakaya ait bir sayaç başlatacak, daha sonra bu sayaç örneğin her 1 saatte ₺1 artacak. Araba otoparktan çıkarken araba durdurulacak (bariyer) (tamamen insansız), sonra müşteri parayı QR kod veya POS cihazı ile ödeyecek. Para ödendikten sonra bariyer açılacak ve araba çıkabilecek. Sesli yönlendirme ise otoparkın her bir tarafına yerleştirilmiş hoparlörler sayesinde yönlendirme yapay zeka tarafından yapılacaktır.";
+            mlike.innerHTML = "471";
+            msikayet.innerHTML = "0";
+            mprew.innerHTML = "1736";
+            moneCikar.innerHTML = "Pasif";
+        }
+
+        else {
+          id.innerHTML = "-";
+          title.innerHTML = "-";
+          desp.innerHTML = "-";
+          like.innerHTML = "-";
+          sikayet.innerHTML = "-";
+          prew.innerHTML = "-";
+          oneCikar.innerHTML = "-";
+
+          mid.innerHTML = "-";
+          mtitle.innerHTML = "-";
+          mdesp.innerHTML = "-";
+          mlike.innerHTML = "-";
+          msikayet.innerHTML = "-";
+          mprew.innerHTML = "-";
+          moneCikar.innerHTML = "-";
+
+          swal (
+            "Geçersiz Fikir ID",
+            "Geçersiz Fikir ID --> 054",
+            "error"
+          )
+        }
+    
+    
+    }
+</script>
+</body>
+</html>

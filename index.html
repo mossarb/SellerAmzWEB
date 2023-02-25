@@ -1,0 +1,2862 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>  <!-- Required meta tags -->
+<script src="https://kit.fontawesome.com/40da6b2c92.js" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!-- SweetAlert2 -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.all.min.js"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="keywords" content="">
+<meta name="author" content="Codescandy">
+<script async src="https://tally.so/widgets/embed.js"></script>
+
+<script>
+  // Sağ tık menüsü engelleme
+  document.addEventListener('contextmenu', event => event.preventDefault());
+  // Tally - Fikir Ekle --> POPUP
+  window.TallyConfig = {
+    "formId": "mOaQ8K",
+    "popup": {
+      "emoji": {
+        "text": "👋",
+        "animation": "head-shake"
+      },
+      "open": {
+        "trigger": "scroll",
+        "scrollPercent": 3
+      },
+      "hideTitle": false,
+      "alignLeft": true
+    }
+  };
+  </script>
+<style>
+  ::selection {
+    background-color: rgba(189, 103, 232, 0.403);
+  }
+</style>
+
+<!-- Favicon icon-->
+<link rel="shortcut icon" type="image/x-icon" href="./assets/images/favicon/favicon-1.ico">
+
+<!-- Libs CSS -->
+<link href="./assets/fonts/feather/feather-1.css" rel="stylesheet">
+<link href="./assets/libs/bootstrap-icons/font/bootstrap-icons-1.css" rel="stylesheet">
+<link href="./assets/libs/%40mdi/font/css/materialdesignicons.min-1.css" rel="stylesheet">
+<link href="./assets/libs/simplebar/dist/simplebar.min-1.css" rel="stylesheet">
+
+<!-- Theme CSS -->
+<link rel="stylesheet" href="./assets/css/theme.min-1.css">
+  <link href="./assets/libs/tiny-slider/dist/tiny-slider-1.css" rel="stylesheet">
+  <title>Bastoliday Resmî Web Sitesi</title>
+</head>
+
+<body class="bg-white">
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content rounded-4 shadow">
+        <div class="modal-body p-5">
+          <h2 class="fw-bold mb-0">Yenilikler 🎉</h2>
+          <ul class="d-grid gap-4 my-5 list-unstyled">
+            <li class="d-flex gap-4">
+              <i class="fa-regular fa-comment" style="font-size: 38px; padding-right:20px; color: grey;"></i>
+              <div>
+                <h5 class="mb-0">Yeni Yorum Özelliği!</h5>
+                Artık fikirlere yorum yapabilirsiniz.
+              </div>
+            </li>
+            <li class="d-flex gap-4" style="padding-top: 30px;">
+              <i class="fa-solid fa-rectangle-ad" style="font-size: 38px; padding-right:16px; color: rgb(233, 216, 25);"></i>
+              <div>
+                <h5 class="mb-0">Fikirlerinizi Öne Çıkarma Özelliği!</h5>
+                Artık fikirlerinizi öne çıkanlar bölümüne ekleyebilirsiniz.
+              </div>
+            </li>
+            <li class="d-flex gap-4" style="padding-top: 20px;">
+              <i class="fa-solid fa-plus" style="font-size: 38px; padding-right:26px; color: rgb(26, 119, 233);"></i>
+              <div>
+                <h5 class="mb-0">Ücretsiz Pakette, 1 adet Fikir Öne Çıkarması Yapabilirsiniz!</h5>
+                Artık ücretsiz pakette 1 adet fikir öne çıkarması yapabilirsiniz.
+              </div>
+            </li>
+          </ul>
+          <button type="button" class="btn btn-lg btn-primary mt-5 w-100" data-bs-dismiss="modal">Teşekkürler!</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- CHAT-SB -->
+<!-- Düğme -->
+<button id="toggle-button" class="btn btn-primary" style="z-index: 99999999;">Online Destek 👋</button>
+
+<!-- Kutu -->
+<div id="info-box" style="z-index: 99999999;">
+  <form action="https://formspree.io/f/xqkopjao" method="POST">
+    <h2 style="color: #333; font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;">Size nasıl yardımcı olabiliriz?</h2>
+    <hr style="color: #333;">
+    <label for="in1" style="color:#333; font-size:15px;">Sorununuzu detaylıca açıklayın:</label>
+    <div class="input-group">
+      <span class="input-group-text">Destek</span>
+      <textarea class="form-control" id="in1" aria-label="Destek" name="message" required></textarea>
+    </div>
+    <small>*Mesajınız içerisinde kendi e-posta adresinizi<br/>belirtmezseniz destek mesajınız geçersiz sayılacaktır.</small>
+    <br/>
+    <button id="my-button" class="btn btn-primary" type="button">
+      <span class="spinner-grow spinner-grow-sm d-none" role="status" aria-hidden="true"></span>
+      <span class="visually-hidden">Gönder</span>
+      <span id="my-button-text"><i class="fa fa-paper-plane"></i> Gönder</span>
+    </button>
+  </form>
+</div>
+
+<!-- Bildirim -->
+<div id="bildirim-kutusu-success">
+<h3 style="color: rgb(66, 198, 5);">Başarılı!</h3>
+<p>Yaptığınız işlem başarıyla gerçekleştirildi.</p>
+</div>
+
+<script>
+  var myButton = document.getElementById("my-button");
+  var myForm = document.querySelector("form");
+  
+  function toastFunc() {
+    var bildirimKutusu = document.getElementById("bildirim-kutusu-success");
+    bildirimKutusu.style.display = "block";
+    setTimeout(function() {
+      bildirimKutusu.style.display = "none";
+    }, 5000);
+  };
+
+  myButton.onclick = function() {
+    myButton.disabled = true;
+    document.querySelectorAll('.spinner-grow').forEach(function(element) {
+      element.classList.remove('d-none');
+    });
+
+    setTimeout(function() {
+      myForm.submit();
+      document.querySelectorAll('.spinner-grow').forEach(function(element) {
+        element.classList.add('d-none');
+      });
+      myButton.disabled = false;
+      myButton.innerHTML = '<span id="my-button-text"><i class="fa fa-check"></i> Gönderildi!</span>';
+      swal (
+        "Destek Mesajınız Gönderildi!",
+        "Destek mesajınızı ekibimiz 72 iş saati içerisinde inceleyip geri dönüş yapacaktır.",
+        "success"
+      )
+    }, 3000);
+  };
+</script>
+
+<style>
+.modal-content {
+    background-color: #fff;
+    border-radius: 0.5rem;
+  }
+  
+  .modal-dialog-centered {
+    display: flex;
+    min-height: calc(100% - 1rem);
+  }
+  
+  .modal-backdrop {
+    opacity: 0.5;
+  }
+  #toggle-button {
+    position: fixed;
+    bottom: 10px;
+    left: 10px;
+}
+
+  #info-box {
+    position: fixed;
+    bottom: 30px;
+    left: 10px;
+    padding: 10px;
+    background-color: rgba(233, 233, 233, 0.37);
+    backdrop-filter: blur(20px);
+    display: none;
+    border-radius: 8px;
+    min-height: 300px;
+    min-width: 300px;
+    box-shadow: 5px 5px 10px #5d5d5d7a;
+}
+#bildirim-kutusu-success {
+  position: fixed;
+  top: 15px;
+  right: 15px;
+  max-height: 80px;
+  max-width: 300px;
+  border-radius: 10px;
+  background-color: #f5f5f558;
+  backdrop-filter: blur(20px);
+  padding: 10px;
+  display: none;
+  z-index: 999999;
+  box-shadow: 1px 7px 14px -5px rgba(0,0,0,0.2);
+}
+
+</style>
+<script>
+$(document).ready(function() {
+    $('#exampleModal').modal('show');
+    
+    $('#exampleModal button').on('click', function() {
+      $('#exampleModal').modal('hide');
+    });
+  });
+  
+  var toggleButton = document.getElementById("toggle-button");
+        var infoBox = document.getElementById("info-box");
+
+        toggleButton.onclick = function() {
+            if (infoBox.style.display === "none") {
+                infoBox.style.display = "block";
+                toggleButton.style.display = "none";
+            } else {
+                infoBox.style.display = "none";
+                toggleButton.style.display = "block";
+            }
+        }
+
+        infoBox.onclick = function(event) {
+            event.stopPropagation();
+        }
+
+        document.onclick = function(event) {
+            if (event.target !== infoBox && event.target !== toggleButton) {
+                infoBox.style.display = "none";
+                toggleButton.style.display = "block";
+            }
+        }
+</script>
+<nav class="navbar navbar-expand-lg navbar-default">
+	<div class="container-fluid px-0">
+		<div class="d-flex">
+			<a class="navbar-brand" href="./index.html"><img src="./assets/images/brand/logo/logo-1.svg" alt="Geeks high quality website templates created with Bootstrap 5."></a>
+			<div class="dropdown">
+				<button class="btn btn-light-primary text-primary" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+					<i class="fa-sharp fa-solid fa-caret-down"></i> Kategoriler
+				</button>
+				<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+					<li class="dropdown-submenu dropend">
+						<a class="dropdown-item dropdown-list-group-item" href="#">
+							Bastoliday nedir? <i class="fa-solid fa-chevron-right" style="padding-left: 20px;"></i> 
+						</a>
+						<ul class="dropdown-menu">
+							<li>
+								<a class="dropdown-item" href="../course-category.html">
+									Hakkımızda</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="../course-category.html">
+									İletişim
+								</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="../course-category.html">
+									Nasıl çalışır?</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="../course-category.html">
+									Ne kadar para kazanılır?</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="../course-category.html">
+									Sistemin çalışma mantığı</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="../course-category.html">
+									Fikirler ne işe yarar?</a>
+							</li>
+						</ul>
+					</li>
+					<li class="dropdown-submenu dropend">
+						<a class="dropdown-item dropdown-list-group-item" href="#">
+							Fikirler <i class="fa-solid fa-chevron-right" style="padding-left: 20px;"></i> 
+						</a>
+						<ul class="dropdown-menu">
+							<li>
+								<a class="dropdown-item" href="../course-category.html">
+									Tüm fikirler</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="../course-category.html">
+									En beğenilen fikirler
+								</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="../course-category.html">
+									Kazanan fikirler</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="../course-category.html" style="color: rgb(109, 196, 16);">
+									Fikir üret</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="../course-category.html">
+									Fikirlerin hakkında bilgi al</a>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<a href="../course-category.html" class="dropdown-item">
+							İletişime geç
+						</a>
+					</li>
+					<li>
+						<a href="../course-category.html" class="dropdown-item">
+							Destek
+						</a>
+					</li>
+					<li>
+						<a href="../course-category.html" class="dropdown-item">
+							Mesaj gönder
+						</a>
+					</li>
+					<li>
+						<a href="../course-category.html" class="dropdown-item">
+							Tüm fikirler
+						</a>
+					</li>
+					<li>
+						<a href="../course-category.html" class="dropdown-item">
+							Fikirlerim
+						</a>
+					</li>
+					<li>
+						<a href="../course-category.html" class="dropdown-item">
+							Para kazan
+						</a>
+					</li>
+					<li>
+						<a href="../course-category.html" class="dropdown-item">
+							Kazandığım para
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+		<!-- Button -->
+		<button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-default" aria-controls="navbar-default" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="icon-bar top-bar mt-0"></span>
+			<span class="icon-bar middle-bar"></span>
+			<span class="icon-bar bottom-bar"></span>
+		</button>
+		<!-- Collapse -->
+		<div class="collapse navbar-collapse" id="navbar-default">
+			<ul class="navbar-nav ms-auto">
+
+				<li class="nav-item dropdown">
+					<a class="nav-link" style="color:blueviolet;" href="/" id="navbarLanding" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						<i class="fa fa-home"></i> Ana sayfa
+					</a>
+				</li>
+				<li class="nav-item dropdown">
+					<a class="nav-link" href="#" id="navbarPages" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						<i class="fa fa-pager"></i> Sayfalar 
+					</a>
+					<ul class="dropdown-menu dropdown-menu-arrow" aria-labelledby="navbarPages">
+						<li class="dropdown-submenu dropend">
+							<a class="dropdown-item dropdown-list-group-item" href="#">
+								Fikirler sayfası <i class="fa-solid fa-chevron-right" style="padding-left: 20px;"></i>
+							</a>
+							<ul class="dropdown-menu">
+								<li>
+									<a class="dropdown-item" href="">
+										Tüm fikirler
+									</a>
+								</li>
+								<li>
+									<a class="dropdown-item" href="">
+										En beğenilen fikirler
+									</a>
+								</li>
+								<li>
+									<a class="dropdown-item" href="">
+										Bu ayın en beğenilenleri
+									</a>
+								</li>
+								<li>
+									<a class="dropdown-item" href="">
+										Benim fikirlerim
+									</a>
+								</li>
+								<li>
+									<a class="dropdown-item" href="">
+										Yatırıma açık fikirler
+									</a>
+								</li>
+								<li>
+									<a class="dropdown-item" href="">
+										Yatırıma kapalı fikirler
+									</a>
+								</li>
+								<li>
+									<a class="dropdown-item" href="">
+										Fikir üret
+									</a>
+								</li>
+							</ul>
+						</li>
+						<li class="dropdown-submenu dropend">
+							<a class="dropdown-item dropdown-list-group-item" href="#">
+								Kendin yap <i class="fa-solid fa-chevron-right" style="padding-left: 20px;"></i>
+							</a>
+							<ul class="dropdown-menu">
+								<li>
+									<a href="" class="dropdown-item">
+										Fikir üret
+									</a>
+								</li>
+								<li>
+									<a href="" class="dropdown-item">
+										Para kazan
+									</a>
+								</li>
+							</ul>
+						</li>
+						<li>
+							<hr class="mx-3">
+						</li>
+
+
+						<li>
+							<a class="dropdown-item" href="../about.html">
+								Hakkımızda
+							</a>
+						</li>
+						<li class="dropdown-submenu dropend">
+							<a class="dropdown-item dropdown-list-group-item" href="#">
+								Destek Merkezi
+							</a>
+							<ul class="dropdown-menu">
+								<li>
+									<a class="dropdown-item" href="../help-center.html">
+										İletişim
+									</a>
+								</li>
+								<li>
+									<a class="dropdown-item" href="../help-center-faq.html">
+										WhatsApp
+									</a>
+								</li>
+								<li>
+									<a class="dropdown-item" href="../help-center-guide.html">
+										Canlı Destek
+									</a>
+								</li>
+								<li>
+									<a class="dropdown-item" href="../help-center-guide-single.html">
+										E-posta
+									</a>
+								</li>
+								<li>
+									<a class="dropdown-item" href="../help-center-support.html">
+										Online Mesaj
+									</a>
+								</li>
+							</ul>
+						</li>
+						<li>
+							<a class="dropdown-item" href="../pricing.html">
+								Paketler
+							</a>
+						</li>
+						<li>
+							<a class="dropdown-item" href="../compare-plan.html">
+								Ücretli plan
+							</a>
+						</li>
+
+						<li>
+							<a class="dropdown-item" href="../contact.html">
+								Ücretsiz plan
+							</a>
+						</li>
+					</ul>
+				</li>
+				<li class="nav-item dropdown dropdown-fullwidth">
+					<a class="nav-link" href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						<i class="fa-solid fa-bars"></i> Menü
+					</a>
+					<div class="dropdown-menu dropdown-menu-md">
+						<div class="px-4 pt-2 pb-2">
+							<div class="row">
+								<div class="col-12">
+									<div class="lh-1 mb-5">
+										<h3 class="mb-1">Fikir üretin, paylaşın, para kazanın!</h3>
+										<p><a href="#" class="nav-link" style="color:rgb(28, 121, 227);">Daha fazla bilgi edinmek için buraya tıklayın.</a>
+										</p>
+									</div>
+								</div>
+								<div class="col-lg-4 col-12">
+									<div class="border-bottom pb-2 mb-3">
+										<h5 class="mb-0">Fikir üretin</h5>
+									</div>
+									<div class="">
+										<a href="#">
+											<div class="d-flex mb-3">
+												<img src="https://img2.pngindir.com/20180328/saq/kisspng-business-idea-photography-idea-5abc1ac7d7a2d1.9519774415222770638833.jpg" alt="" style="width:42px;height:42px;border-radius:8px;box-shadow:2px 2px 3px #3333335b;">
+												<div class="ms-2">
+													<small class="text-body">#1 Fikir üretin</small>
+													<h6 class="mb-0">Daha önce olmayan bir fikir üretin</h6>
+												</div>
+
+											</div>
+										</a>
+										<a href="#">
+											<div class="d-flex mb-3">
+												<img src="https://www.pngplay.com/wp-content/uploads/2/Share-PNG-Clipart-Background.png" alt="" style="width:42px;height:42px;border-radius:8px;box-shadow:2px 2px 3px #3333335b;">
+												<div class="ms-2">
+													<small class="text-body">#2 Fikrinizi paylaşın</small>
+													<h6 class="mb-0">Ürettiğiniz fikri herkese açık bir şekilde paylaşın</h6>
+												</div>
+
+											</div>
+										</a>
+										<a href="#">
+											<div class="d-flex mb-3">
+												<img src="https://img.freepik.com/premium-vector/money-rain_79451-285.jpg?w=2000" alt="" style="width:42px;height:42px;border-radius:8px;box-shadow:2px 2px 3px #3333335b;">
+												<div class="ms-2">
+													<small class="text-body">#3 Para kazanın</small>
+													<h6 class="mb-0">Eğer fikriniz tutarsa para kazanın!</h6>
+												</div>
+
+											</div>
+										</a>
+										<div class="mt-4">
+											<a href="#" class="btn btn-outline-primary btn-sm">Hemen Başla</a>
+										</div>
+									</div>
+
+								</div>
+								<div class="col-lg-4 col-12 mt-4 mt-lg-0">
+									<div class="border-bottom pb-2 mb-3">
+										<h5 class="mb-0">Nasıl çalışır?</h5>
+									</div>
+									<div class="">
+										<a href="#">
+											<div class="d-flex mb-3">
+												<img src="https://w7.pngwing.com/pngs/793/405/png-transparent-incandescent-light-bulb-money-accounting-saving-cash-light-service-lamp-business-thumbnail.png" alt="" style="width:42px;height:42px;border-radius:8px;box-shadow:2px 2px 3px #3333335b;">
+												<div class="ms-2">
+													<small class="text-body">1. Adım</small>
+													<h6 class="mb-0">Fikrinizi üretir ve paylaşırsınız</h6>
+												</div>
+
+											</div>
+										</a>
+										<a href="#">
+											<div class="d-flex mb-3">
+												<img src="https://w7.pngwing.com/pngs/793/405/png-transparent-incandescent-light-bulb-money-accounting-saving-cash-light-service-lamp-business-thumbnail.png" alt="" style="width:42px;height:42px;border-radius:8px;box-shadow:2px 2px 3px #3333335b;">
+												<div class="ms-2">
+													<small class="text-body">2. Adım</small>
+													<h6 class="mb-0">Eğer fikriniz topluluğun beğenisini kazanırsa</h6>
+												</div>
+
+											</div>
+										</a>
+										<a href="#">
+											<div class="d-flex mb-3">
+												<img src="https://w7.pngwing.com/pngs/793/405/png-transparent-incandescent-light-bulb-money-accounting-saving-cash-light-service-lamp-business-thumbnail.png" alt="" style="width:42px;height:42px;border-radius:8px;box-shadow:2px 2px 3px #3333335b;">
+												<div class="ms-2">
+													<small class="text-body">3. Adım</small>
+													<h6 class="mb-0">Fikriniz tekrar 30 gün boyunca topluluğun beğenisine sunulur</h6>
+												</div>
+
+											</div>
+										</a>
+										<a href="#">
+											<div class="d-flex mb-3">
+												<img src="https://w7.pngwing.com/pngs/793/405/png-transparent-incandescent-light-bulb-money-accounting-saving-cash-light-service-lamp-business-thumbnail.png" alt="" style="width:42px;height:42px;border-radius:8px;box-shadow:2px 2px 3px #3333335b;">
+												<div class="ms-2">
+													<small class="text-body">4. Adım</small>
+													<h6 class="mb-0">30 günün sonunda topladığı beğeniye göre (her 500 beğenide ₺100) para alırsınız.</h6>
+												</div>
+
+											</div>
+										</a>
+										<div class="mt-4">
+											<a href="#" class="btn btn-outline-primary btn-sm">Daha Fazla</a>
+										</div>
+									</div>
+
+								</div>
+								<div class="col-lg-4 col-12 mt-4 mt-lg-0">
+									<div class="border-bottom pb-2 mb-3">
+										<h5 class="mb-0">Popüler aramalar</h5>
+									</div>
+									<div class="">
+										<ul class="nav flex-column">
+											<li class="nav-item">
+												<a href="#" class="nav-link">Fikrim hangi bölgeler için geçerli olur?</a>
+											</li>
+											<li class="nav-item">
+												<a href="#" class="nav-link">En fazla ne kadar para kazanabilirim?</a>
+											</li>
+											<li class="nav-item">
+												<a href="#" class="nav-link">Diğer</a>
+											</li>
+
+										</ul>
+
+										<div class="mt-4">
+											<a href="#" class="btn btn-outline-primary btn-sm">Tümünü görüntüle</a>
+										</div>
+									</div>
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</li>
+				<li class="nav-item dropdown">
+					<a class="nav-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						<i class="fa-solid fa-plus"></i>
+					</a>
+					<div class="dropdown-menu dropdown-menu-md" aria-labelledby="navbarDropdown">
+						<div class="list-group">
+							<a class="list-group-item list-group-item-action border-0" href="#">
+								<div class="d-flex align-items-center">
+									<i class="fa fa-file-text fs-3 text-primary"></i>
+									<div class="ms-3">
+										<h5 class="mb-0">Fikir üret</h5>
+										<p class="mb-0 fs-6">
+											Hemen bir fikir üretebilirsin.
+										</p>
+									</div>
+								</div>
+							</a>
+							<a class="list-group-item list-group-item-action border-0" href="#">
+								<div class="d-flex align-items-center">
+									<i class="fa-solid fa-money-bill fs-3 text-primary"></i>
+									<div class="ms-3">
+										<h5 class="mb-0">
+											Yatırım yap<span class="text-primary ms-1">v2.0</span>
+										</h5>
+										<p class="mb-0 fs-6">En iyi fikirlere yatırım yapın.</p>
+									</div>
+								</div>
+							</a>
+							<a class="list-group-item list-group-item-action border-0" href="#" target="_blank">
+								<div class="d-flex align-items-center">
+									<i class="fa fa-toggle-right fs-3 text-primary"></i>
+									<div class="ms-3">
+										<h5 class="mb-0">Para kazan</h5>
+										<p class="mb-0 fs-6">
+											Bastoliday ile nasıl para kazanacağını öğren.
+										</p>
+									</div>
+								</div>
+							</a>
+						</div>
+					</div>
+				</li>
+			</ul>
+			<div class="ms-auto mt-3 mt-lg-0">
+			<div class="d-flex align-items-center">
+				<button style="background-color:rgba(60, 204, 20, 0.522); width:120px; color:#3b3b3b;" class="form-check form-switch theme-switch btn btn-light btn-icon me-2" data-toggle="modal" data-target="#myModal" onclick="window.location.href = '/staticIdeaUrl.html';">
+					<i class="fa fa-plus" style="padding-right: 7px;"></i>
+          Fikir üret
+						   </button>
+				<button style="background-color:rgba(94, 20, 204, 0.522);" class="btn btn-icon btn-light rounded-circle"><i class="fa fa-user text-muted align-middle"></i>
+				</button>
+				<a href="./package.html" class="btn btn-outline-dark ms-3">Paket Satın Al</a>
+				<a href="./staticIdeaUrlTue.html" class="btn btn-dark ms-1">Fikir Sorgula</a>
+				</div>
+			</div>
+      <div class="modal fade" id="tamEkranModal" tabindex="-1" role="dialog" aria-labelledby="tamEkranModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="tamEkranModalLabel">Tam Ekran Modal Başlığı</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <p>Modal İçeriği</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
+              <button type="button" class="btn btn-primary">Kaydet</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="modal fade" id="myModal">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+          <div class="modal-content">
+    
+            <!-- Modal header -->
+            <div class="modal-header">
+              <h4 class="modal-title">Fikir üret</h4>
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+    
+            <!-- Modal body -->
+            <div class="modal-body">
+              <iframe src="https://tally.so/r/mOaQ8K" width="100%" height="500"></iframe>
+            </div>
+    
+          </div>
+        </div>
+      </div>
+		</div>
+	</div>
+</nav>
+
+ <!-- section -->
+<main>
+  <section class="py-lg-16 py-8">
+     <!-- container -->
+    <div class="container">
+       <!-- row -->
+      <div class="row align-items-center">
+         <!-- col -->
+        <div class="col-lg-6 mb-6 mb-lg-0">
+          <div class="">
+             <!-- heading -->
+            <h5 class="text-dark mb-4"><i class="fa fa-check icon-xxs icon-shape bg-light-success text-success rounded-circle me-2"></i>
+                Türkiye'nin en iyi fikir üretme platformu</h5>
+               <!-- heading -->
+            <h1 class="display-3 fw-bold mb-3">Fikir üretin.<br/>Paylaşın.<br/>Para kazanın.</h1>
+             <!-- para -->
+            <p class="pe-lg-10 mb-5">Kendi şehriniz için veya Türkiye için daha önce olmayan bir fikir önerin. Eğer bu fikrinizi topluluk beğenirse fikriniz 30 gün boyunca tekrar topluluğun beğenisine sunulur ve 30 günün sonunda kaç adet beğeni aldıysanız ona göre para alırsınız. (her 500 beğenide ₺100)</p>
+               <!-- btn -->
+            <button type="button" class="btn btn-primary" id="author-btn" onclick="window.location.href = './staticIdeaUrl.html';"><i class="fa fa-plus"></i> Fikir üret</button>
+            <a href="#" class="popup-youtube fs-4 text-inherit ms-3"><img src="../../assets/images/svg/play-btn-1.svg" alt="" class="me-2">Kısa anlatım</a>
+
+          </div>
+        </div>
+         <!-- col -->
+        <div class="col-lg-6 d-flex justify-content-center">
+           <!-- images -->
+         <div class="position-relative">
+          <img src="../../assets/images/background/acedamy-img/bg-thumb-1.svg" alt="" class=" ">
+          <img src="../../assets/images/background/acedamy-img/girl-image-1.png" alt="" class=" position-absolute end-0 bottom-0">
+          <img src="../../assets/images/background/acedamy-img/frame-1-1.svg" alt="" class=" position-absolute top-0 ms-lg-n10 ms-n19">
+          <img src="../../assets/images/background/acedamy-img/frame-2-1.svg" alt="" class=" position-absolute bottom-0 start-0 ms-lg-n14 ms-n6 mb-n7">
+          <img src="../../assets/images/background/acedamy-img/target-1.svg" alt="" class=" position-absolute bottom-0 mb-10 ms-n10 ms-lg-n1 ">
+          <img src="../../assets/images/background/acedamy-img/sound-1.svg" alt="" class=" position-absolute top-0  start-0 mt-18 ms-lg-n19 ms-n8">
+          <img src="../../assets/images/background/acedamy-img/trophy-1.svg" alt="" class=" position-absolute top-0  start-0 ms-lg-n14 ms-n5">
+
+         </div>
+        </div>
+      </div>
+    </div>
+  </section>
+   <!-- container -->
+  <section class="pb-14">
+    <div class="container">
+       <!-- row -->
+      <div class="row">
+        <div class="col-md-6 col-lg-3 border-top-md border-bottom border-end-md ">
+           <!-- text -->
+          <div class="py-7 text-center">
+            <div class="mb-3">
+              <i class="fa fa-award fs-2 text-info"> </i>
+            </div>
+            <div class="lh-1">
+              <h2 class="mb-1">126+</h2>
+              <span>Kazanan Fikir</span>
+            </div>
+          </div>
+
+        </div>
+        <div class="col-md-6 col-lg-3 border-top-md border-bottom border-end-lg ">
+           <!-- icon -->
+          <div class="py-7 text-center">
+            <div class="mb-3">
+              <i class="fa fa-users fs-2 text-warning"> </i>
+            </div>
+             <!-- text -->
+            <div class="lh-1">
+              <h2 class="mb-1">521+</h2>
+              <span>Aktif Kullanıcı</span>
+            </div>
+          </div>
+
+        </div>
+        <div class="col-md-6 col-lg-3 border-top-lg border-bottom border-end-md ">
+           <!-- icon -->
+          <div class="py-7 text-center">
+            <div class="mb-3">
+              <i class="fa fa-tv fs-2 text-primary"> </i>
+            </div>
+             <!-- text -->
+            <div class="lh-1">
+              <h2 class="mb-1">2+</h2>
+              <span>Reklamlar</span>
+            </div>
+          </div>
+
+        </div>
+        <div class="col-md-6 col-lg-3 border-top-lg border-bottom ">
+           <!-- icon -->
+          <div class="py-7 text-center">
+            <div class="mb-3">
+              <i class="fa-solid fa-lightbulb fs-2 text-success"> </i>
+            </div>
+             <!-- text -->
+            <div class="lh-1">
+              <h2 class="mb-1">4+</h2>
+              <span>Aktif Fikir</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+    
+  </section>
+  <section class="pb-lg-14 pb-8">
+     <!-- row -->
+    <div class="container">
+      <div class="row">
+         <!-- col -->
+        <div class="col-12">
+          <div class="mb-6">
+            <h2 class="mb-1 h1">Öne Çıkan Fikirler</h2>
+            <p>Bu ayın en öne çıkan fikirleri</p>
+          </div>
+        </div>
+
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <!-- Nav tab -->
+          <ul class="nav nav-lb-tab mb-6 bg-gray-200 px-5 rounded-3 " id="pills-tab" role="tablist">
+             <!-- nav item -->
+            <li class="nav-item ms-0" role="presentation">
+              <a class="nav-link active" id="pills-development-tab" data-bs-toggle="pill" href="#pills-development" role="tab" aria-controls="pills-development" aria-selected="true">Öne Çıkanlar</a>
+            </li>
+             <!-- nav item -->
+            <li class="nav-item" role="presentation">
+              <a class="nav-link" id="pills-design-tab" data-bs-toggle="pill" href="#pills-design" role="tab" aria-controls="pills-design" aria-selected="false">Kazanan Fikirler</a>
+            </li>
+             <!-- nav item -->
+            <li class="nav-item" role="presentation">
+              <a class="nav-link" id="pills-marketing-tab" data-bs-toggle="pill" href="#pills-marketing" role="tab" aria-controls="pills-marketing" aria-selected="false">En Beğenilen Fikirler</a>
+            </li>
+             <!-- nav item -->
+            <li class="nav-item" role="presentation">
+              <a class="nav-link" id="pills-business-tab" data-bs-toggle="pill" href="#pills-business" role="tab" aria-controls="pills-business" aria-selected="false">Aktif Fikirler</a>
+            </li>
+             <!-- nav item -->
+            <li class="nav-item" role="presentation">
+              <a class="nav-link" id="pills-health-tab" data-bs-toggle="pill" href="#pills-health" role="tab" aria-controls="pills-health" aria-selected="false">Yeni Fikirler</a>
+            </li>
+          </ul>
+          <!-- Tab content -->
+          <div class="tab-content" id="pills-tabContent">
+             <!-- tab content -->
+            <div class="tab-pane fade show active" id="pills-development" role="tabpanel" aria-labelledby="pills-development-tab">
+
+ <!-- row -->
+
+              <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
+
+                <div class="col">
+                  <!-- Card -->
+                  <div class="card card-hover">
+                    <a href="../course-single.html" class="card-img-top"><img src="../../assets/images/course/fikir2.png" alt="" class="rounded-top-md card-img-top"></a>
+                    <!-- Card Body -->
+                    <div class="card-body">
+                      <div class="d-flex justify-content-between align-items-center mb-3">
+                        <span class="badge bg-success-soft">En Beğenilen Fikir</span>
+                        <a href="##" class="text-muted fs-5" onclick="likeFunc()"><i id="heart1" style="color:#333;" class="fa fa-heart align-middle"></i></a>
+                      </div>
+                      <h4 class="mb-2 text-truncate-line-2 "><a href="../course-single.html" class="text-inherit">Benim fikrim, Sesli Otopark </a></h4>
+                      <small>Fikir Sahibi: Kadir Hayrettinoğlu</small><br/>
+                      <small>Fikir ID: 00541278637</small>
+                      <div class="lh-1 mt-3">
+                        <span>
+                          <i class="fa fa-star text-warning me-n1"></i>
+                          <i class="fa fa-star text-warning me-n1"></i>
+                          <i class="fa fa-star text-warning me-n1"></i>
+                          <i class="fa fa-star text-warning me-n1"></i>
+                          <i class="fa fa-star text-warning me-1"></i>
+                        </span>
+                        <span class="text-warning">5.0</span>
+                        <span class="fs-6 text-muted">(471)</span>
+                      </div>
+                    </div>
+                    <!-- Card Footer -->
+                    <div class="card-footer">
+                      <div class="row align-items-center g-0">
+                        <div class="col">
+                          <h5 class="mb-0" onclick="likeFunc()" style="color:rgb(23, 121, 234);"><i class="fa fa-thumbs-up"></i> Beğen</h5>
+                        </div>
+
+                        <div class="col-auto">
+                          <a href="#" class="text-inherit" id="like-text" style="color:rgb(31, 209, 49);">
+                             
+                          </a>
+                        </div>
+                        <script>
+                          function likeFunc() {
+                            swal (
+                              "Fikir Beğenildi.",
+                              "Fikir beğeniniz kaydedildi. 24 saat içerisinden sisteme yansıyacaktır.",
+                              "success"
+                            );
+                            document.getElementById("heart1").style.color = "red";
+                            document.getElementById("like-text").innerHTML = "Beğenildi.";
+                          }
+                        </script>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col">
+                  <!-- Card -->
+                  <div class="card card-hover">
+                    <a href="./course-single.html" class="card-img-top"><img src="./assets/images/course/fikir3.png" alt="" class="card-img-top rounded-top-md"></a>
+                    <!-- Card Body -->
+                    <div class="card-body">
+                      <div class="d-flex justify-content-between align-items-center mb-3">
+                        <span class="badge bg-info-soft">Öne Çıkan Fikir</span>
+                        <a href="##" class="text-muted fs-5" onclick="likeFunc2()"><i id="heart2" style="color:#333;" class="fa fa-heart align-middle"></i></a>
+                      </div>
+                      <h4 class="mb-2 text-truncate-line-2 "><a href="#" class="text-inherit">Benim fikrim,
+                        Akıllı Taksi Durağı
+                      </a></h4>
+
+                      <small>Fikir Sahibi: Enver Fıstıkçı</small><br/>
+                      <small>Fikir ID: 003456410</small>
+                      <div class="lh-1 mt-3">
+                        <span>
+                          <i class="fa fa-star text-warning me-n1"></i>
+                          <i class="fa fa-star text-warning me-n1"></i>
+                          <i class="fa fa-star text-warning me-n1"></i>
+                          <i class="fa fa-star text-warning me-n1"></i>
+                          <i class="fa fa-star text-warning me-n1"></i>
+                        </span>
+                        <span class="text-warning">5.0</span>
+                        <span class="fs-6 text-muted">(319)</span>
+                      </div>
+                    </div>
+                    <!-- Card Footer -->
+                    <div class="card-footer">
+                      <div class="row align-items-center g-0">
+                        <div class="col">
+                          <h5 class="mb-0" onclick="likeFunc2()" style="color:rgb(23, 121, 234);"><i class="fa fa-thumbs-up"></i> Beğen</h5>
+                        </div>
+
+                        <div class="col-auto">
+                          <a href="#" class="text-inherit" id="like-text2" style="color:rgb(31, 209, 49);">
+                             
+                          </a>
+                        </div>
+                        <script>
+                          function likeFunc2() {
+                            swal (
+                              "Fikir Beğenildi.",
+                              "Fikir beğeniniz kaydedildi. 24 saat içerisinden sisteme yansıyacaktır.",
+                              "success"
+                            );
+                            document.getElementById("heart2").style.color = "red";
+                            document.getElementById("like-text2").innerHTML = "Beğenildi.";
+                          }
+                        </script>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col">
+                  <!-- Card -->
+                  <div class="card card-hover">
+                    <a href="#" class="card-img-top"><img src="./assets/images/fikir5.png" alt="" class="card-img-top rounded-top-md"></a>
+                    <!-- Card Body -->
+                    <div class="card-body">
+                      <div class="d-flex justify-content-between align-items-center mb-3">
+                        <span class="badge bg-info-soft">Öne Çıkan Fikir</span>
+                        <a href="##" class="text-muted fs-5"><i id="heart3" onclick="likeFunc3()" style="color:#333;" class="fa fa-heart align-middle"></i></a>
+                      </div>
+                      <h4 class="mb-2 text-truncate-line-2 "><a href="#" class="text-inherit">
+                          Benim fikrim, Isıtıcı Banklar
+                      </a></h4>
+                      <small>Fikir Sahibi: Ömer Başiskele</small><br/>
+                      <small>Fikir ID: 0078129343</small>
+                      <div class="lh-1 mt-3">
+                        <span>
+                          <i class="fa fa-star text-warning me-n1"></i>
+                          <i class="fa fa-star text-warning me-n1"></i>
+                          <i class="fa fa-star text-warning me-n1"></i>
+                          <i class="fa fa-star text-warning me-n1"></i>
+                          <i class="fa-regular fa-star text-warning"></i>
+                        </span>
+                        <span class="text-warning">4.0</span>
+                        <span class="fs-6 text-muted">(287)</span>
+                      </div>
+                    </div>
+                    <!-- Card Footer -->
+                    <div class="card-footer">
+                      <div class="row align-items-center g-0">
+                        <div class="col">
+                          <h5 class="mb-0" onclick="likeFunc3()" style="color:rgb(23, 121, 234);"><i class="fa fa-thumbs-up"></i> Beğen</h5>
+                        </div>
+
+                        <div class="col-auto">
+                          <a href="#" class="text-inherit" id="like-text3" style="color:rgb(31, 209, 49);"></a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <script>
+                  function likeFunc3() {
+                    swal (
+                      "Fikir Beğenildi.",
+                      "Fikir beğeniniz kaydedildi. 24 saat içerisinden sisteme yansıyacaktır.",
+                      "success"
+                    );
+                    document.getElementById("heart3").style.color = "red";
+                    document.getElementById("like-text3").innerHTML = "Beğenildi.";
+                  }
+                </script>
+                <div class="col">
+                  <!-- Card -->
+                  <div class="card card-hover">
+                    <a href="#" class="card-img-top"><img src="./assets/images/fikir6.png" alt="" class="rounded-top-md card-img-top"></a>
+                    <!-- Card Body -->
+                    <div class="card-body">
+                      <div class="d-flex justify-content-between align-items-center mb-3">
+                        <span class="badge bg-info-soft">Öne Çıkan Fikir</span>
+                        <a href="##" class="text-muted fs-5"><i id="heart4" onclick="likeFunc4()" class="fa fa-heart align-middle"></i></a>
+                      </div>
+                      <h4 class="mb-2 text-truncate-line-2 "><a href="#" class="text-inherit">
+                        Benim fikrim, Akıllı Enerji
+                      </a></h4>
+
+                      <small>Fikir Sahibi: Şemsettin Çınaroğulları</small><br/>
+                      <small>Fikir ID: 004127860</small>
+                      <div class="lh-1 mt-3">
+                        <span>
+                          <i class="fa fa-star text-warning me-n1"></i>
+                          <i class="fa fa-star text-warning me-n1"></i>
+                          <i class="fa fa-star text-warning me-n1"></i>
+                          <i class="fa fa-star text-warning me-n1"></i>
+                          <i class="fa-regular fa-star text-warning"></i>
+                        </span>
+                        <span class="text-warning">4.0</span>
+                        <span class="fs-6 text-muted">(275)</span>
+                      </div>
+                    </div>
+                    <!-- Card Footer -->
+                    <div class="card-footer">
+                      <div class="row align-items-center g-0">
+                        <div class="col">
+                          <h5 class="mb-0" onclick="likeFunc4()" style="color:rgb(23, 121, 234);"><i class="fa fa-thumbs-up"></i> Beğen</h5>
+                        </div>
+
+                        <div class="col-auto">
+                          <a href="#" class="text-inherit">
+                            <a href="#" class="text-inherit" id="like-text4" style="color:rgb(31, 209, 49);"></a>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <script>
+                  function likeFunc4() {
+                    swal (
+                      "Fikir Beğenildi.",
+                      "Fikir beğeniniz kaydedildi. 24 saat içerisinden sisteme yansıyacaktır.",
+                      "success"
+                    );
+                    document.getElementById("heart4").style.color = "red";
+                    document.getElementById("like-text4").innerHTML = "Beğenildi.";
+                  }
+                </script>
+              </div>
+            </div>
+<!-- tab content -->
+            <div class="tab-pane fade" id="pills-design" role="tabpanel" aria-labelledby="pills-design-tab">
+
+              <div class="row row-cols-2 row-cols-lg-4 g-4">
+                <div class="col">
+                  <!-- Card -->
+                  <div class="card card-hover">
+                    <a href="../course-single.html" class="card-img-top"><img src="../../assets/images/course/course-graphql-1.jpg" alt="" class="rounded-top-md card-img-top"></a>
+                    <!-- Card Body -->
+                    <div class="card-body">
+                      <div class="d-flex justify-content-between align-items-center mb-3">
+                        <span class="badge bg-success-soft">Beginner</span>
+                        <a href="#" class="text-muted fs-5"><i class="fe fe-heart align-middle"></i></a>
+                      </div>
+                      <h4 class="mb-2 text-truncate-line-2 "><a href="../course-single.html" class="text-inherit">GraphQL:
+                          introduction to graphQL for beginners</a></h4>
+
+                      <small>By: Michael Cundiff</small>
+                      <div class="lh-1 mt-3">
+                        <span>
+                          <i class="mdi mdi-star text-warning me-n1"></i>
+                          <i class="mdi mdi-star text-warning me-n1"></i>
+                          <i class="mdi mdi-star text-warning me-n1"></i>
+                          <i class="mdi mdi-star text-warning me-n1"></i>
+                          <i class="mdi mdi-star text-warning"></i>
+                        </span>
+                        <span class="text-warning">4.5</span>
+                        <span class="fs-6 text-muted">(9,300)</span>
+                      </div>
+                    </div>
+                    <!-- Card Footer -->
+                    <div class="card-footer">
+                      <div class="row align-items-center g-0">
+                        <div class="col">
+                          <h5 class="mb-0">Free</h5>
+                        </div>
+
+                        <div class="col-auto">
+                          <a href="#" class="text-inherit">
+                            <i class="fe fe-shopping-cart text-primary align-middle me-2"></i>Get Enrolled
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col">
+                  <!-- Card -->
+                  <div class="card card-hover">
+                    <a href="../course-single.html" class="card-img-top"><img src="../../assets/images/course/course-angular-1.jpg" alt="" class="card-img-top rounded-top-md"></a>
+                    <!-- Card Body -->
+                    <div class="card-body">
+                      <div class="d-flex justify-content-between align-items-center mb-3">
+                        <span class="badge bg-danger-soft">Advance</span>
+                        <a href="#" class="text-muted fs-5"><i class="fe fe-heart align-middle"></i></a>
+                      </div>
+                      <h4 class="mb-2 text-truncate-line-2 "><a href="../course-single.html" class="text-inherit">Angular -
+                          the complete guide for beginner</a></h4>
+
+                      <small>By: Jeffrey McCoy</small>
+                      <div class="lh-1 mt-3">
+                        <span>
+                          <i class="mdi mdi-star text-warning me-n1"></i>
+                          <i class="mdi mdi-star text-warning me-n1"></i>
+                          <i class="mdi mdi-star text-warning me-n1"></i>
+                          <i class="mdi mdi-star text-warning me-n1"></i>
+                          <i class="mdi mdi-star text-warning"></i>
+                        </span>
+                        <span class="text-warning">4.5</span>
+                        <span class="fs-6 text-muted">(8,890)</span>
+                      </div>
+                    </div>
+                    <!-- Card Footer -->
+                    <div class="card-footer">
+                      <div class="row align-items-center g-0">
+                        <div class="col">
+                          <h5 class="mb-0">$49.00</h5>
+                        </div>
+
+                        <div class="col-auto">
+                          <a href="#" class="text-inherit">
+                            <i class="fe fe-shopping-cart text-primary align-middle me-2"></i>Get Enrolled
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col">
+                  <!-- Card -->
+                  <div class="card card-hover">
+                    <a href="../course-single.html" class="card-img-top"><img src="../../assets/images/course/course-python-1.jpg" alt="" class="card-img-top rounded-top-md"></a>
+                    <!-- Card Body -->
+                    <div class="card-body">
+                      <div class="d-flex justify-content-between align-items-center mb-3">
+                        <span class="badge bg-success-soft">Beginner</span>
+                        <a href="#" class="text-muted fs-5"><i class="fe fe-heart align-middle"></i></a>
+                      </div>
+                      <h4 class="mb-2 text-truncate-line-2 "><a href="../course-single.html" class="text-inherit">The
+                          Python
+                          Course: build web application</a></h4>
+
+                      <small>By: Douglas Howell</small>
+                      <div class="lh-1 mt-3">
+                        <span>
+                          <i class="mdi mdi-star text-warning me-n1"></i>
+                          <i class="mdi mdi-star text-warning me-n1"></i>
+                          <i class="mdi mdi-star text-warning me-n1"></i>
+                          <i class="mdi mdi-star text-warning me-n1"></i>
+                          <i class="mdi mdi-star text-warning"></i>
+                        </span>
+                        <span class="text-warning">4.5</span>
+                        <span class="fs-6 text-muted">(13,245)</span>
+                      </div>
+                    </div>
+                    <!-- Card Footer -->
+                    <div class="card-footer">
+                      <div class="row align-items-center g-0">
+                        <div class="col">
+                          <h5 class="mb-0">$19.00</h5>
+                        </div>
+
+                        <div class="col-auto">
+                          <a href="#" class="text-inherit">
+                            <i class="fe fe-shopping-cart text-primary align-middle me-2"></i>Get Enrolled
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col">
+                  <!-- Card -->
+                  <div class="card card-hover">
+                    <a href="../course-single.html" class="card-img-top"><img src="../../assets/images/course/course-javascript-1.jpg" alt="" class="rounded-top-md card-img-top"></a>
+                    <!-- Card Body -->
+                    <div class="card-body">
+                      <div class="d-flex justify-content-between align-items-center mb-3">
+                        <span class="badge bg-info-soft">Intermediate</span>
+                        <a href="#" class="text-muted fs-5"><i class="fe fe-heart align-middle"></i></a>
+                      </div>
+                      <h4 class="mb-2 text-truncate-line-2 "><a href="../course-single.html" class="text-inherit">How to
+                          easily create a website with JavaScript </a></h4>
+
+                      <small>By: Claire Evans</small>
+                      <div class="lh-1 mt-3">
+                        <span>
+                          <i class="mdi mdi-star text-warning me-n1"></i>
+                          <i class="mdi mdi-star text-warning me-n1"></i>
+                          <i class="mdi mdi-star text-warning me-n1"></i>
+                          <i class="mdi mdi-star text-warning me-n1"></i>
+                          <i class="mdi mdi-star text-warning"></i>
+                        </span>
+                        <span class="text-warning">4.5</span>
+                        <span class="fs-6 text-muted">(9,300)</span>
+                      </div>
+                    </div>
+                    <!-- Card Footer -->
+                    <div class="card-footer">
+                      <div class="row align-items-center g-0">
+                        <div class="col">
+                          <h5 class="mb-0">$39.00</h5>
+                        </div>
+
+                        <div class="col-auto">
+                          <a href="#" class="text-inherit">
+                            <i class="fe fe-shopping-cart text-primary align-middle me-2"></i>Get Enrolled
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col">
+                  <!-- Card -->
+                  <div class="card card-hover">
+                    <a href="../course-single.html" class="card-img-top"><img src="../../assets/images/course/course-css-1.jpg" alt="" class="card-img-top rounded-top-md"></a>
+                    <!-- Card Body -->
+                    <div class="card-body">
+                      <div class="d-flex justify-content-between align-items-center mb-3">
+                        <span class="badge bg-danger-soft">Beginner</span>
+                        <a href="#" class="text-muted fs-5"><i class="fe fe-heart align-middle"></i></a>
+                      </div>
+                      <h4 class="mb-2 text-truncate-line-2 "><a href="../course-single.html" class="text-inherit">CSS:
+                          ultimate CSS course from beginner to advanced</a></h4>
+
+                      <small>By: Carolyn Welborn</small>
+                      <div class="lh-1 mt-3">
+                        <span>
+                          <i class="mdi mdi-star text-warning me-n1"></i>
+                          <i class="mdi mdi-star text-warning me-n1"></i>
+                          <i class="mdi mdi-star text-warning me-n1"></i>
+                          <i class="mdi mdi-star text-warning me-n1"></i>
+                          <i class="mdi mdi-star text-warning"></i>
+                        </span>
+                        <span class="text-warning">4.5</span>
+                        <span class="fs-6 text-muted">(8,890)</span>
+                      </div>
+                    </div>
+                    <!-- Card Footer -->
+                    <div class="card-footer">
+                      <div class="row align-items-center g-0">
+                        <div class="col">
+                          <h5 class="mb-0">$30.00</h5>
+                        </div>
+
+                        <div class="col-auto">
+                          <a href="#" class="text-inherit">
+                            <i class="fe fe-shopping-cart text-primary align-middle me-2"></i>Get Enrolled
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col">
+                  <!-- Card -->
+                  <div class="card card-hover">
+                    <a href="../course-single.html" class="card-img-top"><img src="../../assets/images/course/course-gatsby-1.jpg" alt="" class="card-img-top rounded-top-md"></a>
+                    <!-- Card Body -->
+                    <div class="card-body">
+                      <div class="d-flex justify-content-between align-items-center mb-3">
+                        <span class="badge bg-info-soft">Intermediate</span>
+                        <a href="#" class="text-muted fs-5"><i class="fe fe-heart align-middle"></i></a>
+                      </div>
+                      <h4 class="mb-2 text-truncate-line-2 "><a href="../course-single.html" class="text-inherit">The
+                          Gatsby
+                          Course: build web application</a></h4>
+
+                      <small>By: Floyd Amall</small>
+                      <div class="lh-1 mt-3">
+                        <span>
+                          <i class="mdi mdi-star text-warning me-n1"></i>
+                          <i class="mdi mdi-star text-warning me-n1"></i>
+                          <i class="mdi mdi-star text-warning me-n1"></i>
+                          <i class="mdi mdi-star text-warning me-n1"></i>
+                          <i class="mdi mdi-star text-warning"></i>
+                        </span>
+                        <span class="text-warning">4.5</span>
+                        <span class="fs-6 text-muted">(13,245)</span>
+                      </div>
+                    </div>
+                    <!-- Card Footer -->
+                    <div class="card-footer">
+                      <div class="row align-items-center g-0">
+                        <div class="col">
+                          <h5 class="mb-0">$34.00</h5>
+                        </div>
+
+                        <div class="col-auto">
+                          <a href="#" class="text-inherit">
+                            <i class="fe fe-shopping-cart text-primary align-middle me-2"></i>Get Enrolled
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col">
+                  <!-- Card -->
+                  <div class="card card-hover">
+                    <a href="../course-single.html" class="card-img-top"><img src="../../assets/images/course/course-wordpress-1.jpg" alt="" class="rounded-top-md card-img-top"></a>
+                    <!-- Card Body -->
+                    <div class="card-body">
+                      <div class="d-flex justify-content-between align-items-center mb-3">
+                        <span class="badge bg-danger-soft">Advance</span>
+                        <a href="#" class="text-muted fs-5"><i class="fe fe-heart align-middle"></i></a>
+                      </div>
+                      <h4 class="mb-2 text-truncate-line-2 "><a href="../course-single.html" class="text-inherit">WordPress:
+                          introduction to wordpress for beginners</a></h4>
+
+                      <small>By: Victor Elliott</small>
+                      <div class="lh-1 mt-3">
+                        <span>
+                          <i class="mdi mdi-star text-warning me-n1"></i>
+                          <i class="mdi mdi-star text-warning me-n1"></i>
+                          <i class="mdi mdi-star text-warning me-n1"></i>
+                          <i class="mdi mdi-star text-warning me-n1"></i>
+                          <i class="mdi mdi-star text-warning"></i>
+                        </span>
+                        <span class="text-warning">4.5</span>
+                        <span class="fs-6 text-muted">(9,300)</span>
+                      </div>
+                    </div>
+                    <!-- Card Footer -->
+                    <div class="card-footer">
+                      <div class="row align-items-center g-0">
+                        <div class="col">
+                          <h5 class="mb-0">$39.00</h5>
+                        </div>
+
+                        <div class="col-auto">
+                          <a href="#" class="text-inherit">
+                            <i class="fe fe-shopping-cart text-primary align-middle me-2"></i>Get Enrolled
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col">
+                  <!-- Card -->
+                  <div class="card card-hover">
+                    <a href="../course-single.html" class="card-img-top"><img src="../../assets/images/course/course-react-1.jpg" alt="" class="rounded-top-md card-img-top"></a>
+                    <!-- Card Body -->
+                    <div class="card-body">
+                      <div class="d-flex justify-content-between align-items-center mb-3">
+                        <span class="badge bg-info-soft">Intermediate</span>
+                        <a href="#" class="text-muted fs-5"><i class="fe fe-heart align-middle"></i></a>
+                      </div>
+                      <h4 class="mb-2 text-truncate-line-2 "><a href="../course-single.html" class="text-inherit">How
+                          to
+                          easily create a website with React</a></h4>
+                      <!-- List -->
+                      <small>By: Morris Mccoy</small>
+                      <div class="lh-1 mt-3">
+                        <span>
+                          <i class="mdi mdi-star text-warning me-n1"></i>
+                          <i class="mdi mdi-star text-warning me-n1"></i>
+                          <i class="mdi mdi-star text-warning me-n1"></i>
+                          <i class="mdi mdi-star text-warning me-n1"></i>
+                          <i class="mdi mdi-star text-warning"></i>
+                        </span>
+                        <span class="text-warning">4.5</span>
+                        <span class="fs-6 text-muted">(7,700)</span>
+                      </div>
+                    </div>
+                    <!-- Card Footer -->
+                    <div class="card-footer">
+                      <div class="row align-items-center g-0">
+                        <div class="col">
+                          <h5 class="mb-0">$29.00</h5>
+                        </div>
+
+                        <div class="col-auto">
+                          <a href="#" class="text-inherit">
+                            <i class="fe fe-shopping-cart text-primary align-middle me-2"></i>Get Enrolled
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
+
+
+
+              </div>
+            </div>
+            <!-- Tab Pane -->
+            <div class="tab-pane fade" id="pills-marketing" role="tabpanel" aria-labelledby="pills-marketing-tab">
+              <div class="row row-cols-2 row-cols-lg-4 g-4">
+                <div class="col">
+                  <!-- Card -->
+                  <div class="card card-hover">
+                    <a href="../course-single.html" class="card-img-top"><img src="../../assets/images/course/course-react-1.jpg" alt="" class="rounded-top-md card-img-top"></a>
+                    <!-- Card Body -->
+                    <div class="card-body">
+                      <div class="d-flex justify-content-between align-items-center mb-3">
+                        <span class="badge bg-info-soft">Intermediate</span>
+                        <a href="#" class="text-muted fs-5"><i class="fe fe-heart align-middle"></i></a>
+                      </div>
+                      <h4 class="mb-2 text-truncate-line-2 "><a href="../course-single.html" class="text-inherit">How
+                          to
+                          easily create a website with React</a></h4>
+                      <!-- List -->
+                      <small>By: Morris Mccoy</small>
+                      <div class="lh-1 mt-3">
+                        <span>
+                          <i class="mdi mdi-star text-warning me-n1"></i>
+                          <i class="mdi mdi-star text-warning me-n1"></i>
+                          <i class="mdi mdi-star text-warning me-n1"></i>
+                          <i class="mdi mdi-star text-warning me-n1"></i>
+                          <i class="mdi mdi-star text-warning"></i>
+                        </span>
+                        <span class="text-warning">4.5</span>
+                        <span class="fs-6 text-muted">(7,700)</span>
+                      </div>
+                    </div>
+                    <!-- Card Footer -->
+                    <div class="card-footer">
+                      <div class="row align-items-center g-0">
+                        <div class="col">
+                          <h5 class="mb-0">$29.00</h5>
+                        </div>
+
+                        <div class="col-auto">
+                          <a href="#" class="text-inherit">
+                            <i class="fe fe-shopping-cart text-primary align-middle me-2"></i>Get Enrolled
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col">
+                  <!-- Card -->
+                  <div class="card card-hover">
+                    <a href="../course-single.html" class="card-img-top"><img src="../../assets/images/course/course-graphql-1.jpg" alt="" class="rounded-top-md card-img-top"></a>
+                    <!-- Card Body -->
+                    <div class="card-body">
+                      <div class="d-flex justify-content-between align-items-center mb-3">
+                        <span class="badge bg-success-soft">Beginner</span>
+                        <a href="#" class="text-muted fs-5"><i class="fe fe-heart align-middle"></i></a>
+                      </div>
+                      <h4 class="mb-2 text-truncate-line-2 "><a href="../course-single.html" class="text-inherit">GraphQL:
+                          introduction to graphQL for beginners</a></h4>
+
+                      <small>By: Michael Cundiff</small>
+                      <div class="lh-1 mt-3">
+                        <span>
+                          <i class="mdi mdi-star text-warning me-n1"></i>
+                          <i class="mdi mdi-star text-warning me-n1"></i>
+                          <i class="mdi mdi-star text-warning me-n1"></i>
+                          <i class="mdi mdi-star text-warning me-n1"></i>
+                          <i class="mdi mdi-star text-warning"></i>
+                        </span>
+                        <span class="text-warning">4.5</span>
+                        <span class="fs-6 text-muted">(9,300)</span>
+                      </div>
+                    </div>
+                    <!-- Card Footer -->
+                    <div class="card-footer">
+                      <div class="row align-items-center g-0">
+                        <div class="col">
+                          <h5 class="mb-0">Free</h5>
+                        </div>
+
+                        <div class="col-auto">
+                          <a href="#" class="text-inherit">
+                            <i class="fe fe-shopping-cart text-primary align-middle me-2"></i>Get Enrolled
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col">
+                  <!-- Card -->
+                  <div class="card card-hover">
+                    <a href="../course-single.html" class="card-img-top"><img src="../../assets/images/course/course-angular-1.jpg" alt="" class="card-img-top rounded-top-md"></a>
+                    <!-- Card Body -->
+                    <div class="card-body">
+                      <div class="d-flex justify-content-between align-items-center mb-3">
+                        <span class="badge bg-danger-soft">Advance</span>
+                        <a href="#" class="text-muted fs-5"><i class="fe fe-heart align-middle"></i></a>
+                      </div>
+                      <h4 class="mb-2 text-truncate-line-2 "><a href="../course-single.html" class="text-inherit">Angular -
+                          the complete guide for beginner</a></h4>
+
+                      <small>By: Jeffrey McCoy</small>
+                      <div class="lh-1 mt-3">
+                        <span>
+                          <i class="mdi mdi-star text-warning me-n1"></i>
+                          <i class="mdi mdi-star text-warning me-n1"></i>
+                          <i class="mdi mdi-star text-warning me-n1"></i>
+                          <i class="mdi mdi-star text-warning me-n1"></i>
+                          <i class="mdi mdi-star text-warning"></i>
+                        </span>
+                        <span class="text-warning">4.5</span>
+                        <span class="fs-6 text-muted">(8,890)</span>
+                      </div>
+                    </div>
+                    <!-- Card Footer -->
+                    <div class="card-footer">
+                      <div class="row align-items-center g-0">
+                        <div class="col">
+                          <h5 class="mb-0">$49.00</h5>
+                        </div>
+
+                        <div class="col-auto">
+                          <a href="#" class="text-inherit">
+                            <i class="fe fe-shopping-cart text-primary align-middle me-2"></i>Get Enrolled
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col">
+                  <!-- Card -->
+                  <div class="card card-hover">
+                    <a href="../course-single.html" class="card-img-top"><img src="../../assets/images/course/course-css-1.jpg" alt="" class="card-img-top rounded-top-md"></a>
+                    <!-- Card Body -->
+                    <div class="card-body">
+                      <div class="d-flex justify-content-between align-items-center mb-3">
+                        <span class="badge bg-danger-soft">Beginner</span>
+                        <a href="#" class="text-muted fs-5"><i class="fe fe-heart align-middle"></i></a>
+                      </div>
+                      <h4 class="mb-2 text-truncate-line-2 "><a href="../course-single.html" class="text-inherit">CSS:
+                          ultimate CSS course from beginner to advanced</a></h4>
+
+                      <small>By: Carolyn Welborn</small>
+                      <div class="lh-1 mt-3">
+                        <span>
+                          <i class="mdi mdi-star text-warning me-n1"></i>
+                          <i class="mdi mdi-star text-warning me-n1"></i>
+                          <i class="mdi mdi-star text-warning me-n1"></i>
+                          <i class="mdi mdi-star text-warning me-n1"></i>
+                          <i class="mdi mdi-star text-warning"></i>
+                        </span>
+                        <span class="text-warning">4.5</span>
+                        <span class="fs-6 text-muted">(8,890)</span>
+                      </div>
+                    </div>
+                    <!-- Card Footer -->
+                    <div class="card-footer">
+                      <div class="row align-items-center g-0">
+                        <div class="col">
+                          <h5 class="mb-0">$30.00</h5>
+                        </div>
+
+                        <div class="col-auto">
+                          <a href="#" class="text-inherit">
+                            <i class="fe fe-shopping-cart text-primary align-middle me-2"></i>Get Enrolled
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col">
+                  <!-- Card -->
+                  <div class="card card-hover">
+                    <a href="../course-single.html" class="card-img-top"><img src="../../assets/images/course/course-gatsby-1.jpg" alt="" class="card-img-top rounded-top-md"></a>
+                    <!-- Card Body -->
+                    <div class="card-body">
+                      <div class="d-flex justify-content-between align-items-center mb-3">
+                        <span class="badge bg-info-soft">Intermediate</span>
+                        <a href="#" class="text-muted fs-5"><i class="fe fe-heart align-middle"></i></a>
+                      </div>
+                      <h4 class="mb-2 text-truncate-line-2 "><a href="../course-single.html" class="text-inherit">The
+                          Gatsby
+                          Course: build web application</a></h4>
+
+                      <small>By: Floyd Amall</small>
+                      <div class="lh-1 mt-3">
+                        <span>
+                          <i class="mdi mdi-star text-warning me-n1"></i>
+                          <i class="mdi mdi-star text-warning me-n1"></i>
+                          <i class="mdi mdi-star text-warning me-n1"></i>
+                          <i class="mdi mdi-star text-warning me-n1"></i>
+                          <i class="mdi mdi-star text-warning"></i>
+                        </span>
+                        <span class="text-warning">4.5</span>
+                        <span class="fs-6 text-muted">(13,245)</span>
+                      </div>
+                    </div>
+                    <!-- Card Footer -->
+                    <div class="card-footer">
+                      <div class="row align-items-center g-0">
+                        <div class="col">
+                          <h5 class="mb-0">$34.00</h5>
+                        </div>
+
+                        <div class="col-auto">
+                          <a href="#" class="text-inherit">
+                            <i class="fe fe-shopping-cart text-primary align-middle me-2"></i>Get Enrolled
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col">
+                  <!-- Card -->
+                  <div class="card card-hover">
+                    <a href="../course-single.html" class="card-img-top"><img src="../../assets/images/course/course-javascript-1.jpg" alt="" class="rounded-top-md card-img-top"></a>
+                    <!-- Card Body -->
+                    <div class="card-body">
+                      <div class="d-flex justify-content-between align-items-center mb-3">
+                        <span class="badge bg-info-soft">Intermediate</span>
+                        <a href="#" class="text-muted fs-5"><i class="fe fe-heart align-middle"></i></a>
+                      </div>
+                      <h4 class="mb-2 text-truncate-line-2 "><a href="../course-single.html" class="text-inherit">How to
+                          easily create a website with JavaScript </a></h4>
+
+                      <small>By: Claire Evans</small>
+                      <div class="lh-1 mt-3">
+                        <span>
+                          <i class="mdi mdi-star text-warning me-n1"></i>
+                          <i class="mdi mdi-star text-warning me-n1"></i>
+                          <i class="mdi mdi-star text-warning me-n1"></i>
+                          <i class="mdi mdi-star text-warning me-n1"></i>
+                          <i class="mdi mdi-star text-warning"></i>
+                        </span>
+                        <span class="text-warning">4.5</span>
+                        <span class="fs-6 text-muted">(9,300)</span>
+                      </div>
+                    </div>
+                    <!-- Card Footer -->
+                    <div class="card-footer">
+                      <div class="row align-items-center g-0">
+                        <div class="col">
+                          <h5 class="mb-0">$39.00</h5>
+                        </div>
+
+                        <div class="col-auto">
+                          <a href="#" class="text-inherit">
+                            <i class="fe fe-shopping-cart text-primary align-middle me-2"></i>Get Enrolled
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col">
+                  <!-- Card -->
+                  <div class="card card-hover">
+                    <a href="../course-single.html" class="card-img-top"><img src="../../assets/images/course/course-wordpress-1.jpg" alt="" class="rounded-top-md card-img-top"></a>
+                    <!-- Card Body -->
+                    <div class="card-body">
+                      <div class="d-flex justify-content-between align-items-center mb-3">
+                        <span class="badge bg-danger-soft">Advance</span>
+                        <a href="#" class="text-muted fs-5"><i class="fe fe-heart align-middle"></i></a>
+                      </div>
+                      <h4 class="mb-2 text-truncate-line-2 "><a href="../course-single.html" class="text-inherit">WordPress:
+                          introduction to wordpress for beginners</a></h4>
+
+                      <small>By: Victor Elliott</small>
+                      <div class="lh-1 mt-3">
+                        <span>
+                          <i class="mdi mdi-star text-warning me-n1"></i>
+                          <i class="mdi mdi-star text-warning me-n1"></i>
+                          <i class="mdi mdi-star text-warning me-n1"></i>
+                          <i class="mdi mdi-star text-warning me-n1"></i>
+                          <i class="mdi mdi-star text-warning"></i>
+                        </span>
+                        <span class="text-warning">4.5</span>
+                        <span class="fs-6 text-muted">(9,300)</span>
+                      </div>
+                    </div>
+                    <!-- Card Footer -->
+                    <div class="card-footer">
+                      <div class="row align-items-center g-0">
+                        <div class="col">
+                          <h5 class="mb-0">$39.00</h5>
+                        </div>
+
+                        <div class="col-auto">
+                          <a href="#" class="text-inherit">
+                            <i class="fe fe-shopping-cart text-primary align-middle me-2"></i>Get Enrolled
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col">
+                  <!-- Card -->
+                  <div class="card card-hover">
+                    <a href="../course-single.html" class="card-img-top"><img src="../../assets/images/course/course-python-1.jpg" alt="" class="card-img-top rounded-top-md"></a>
+                    <!-- Card Body -->
+                    <div class="card-body">
+                      <div class="d-flex justify-content-between align-items-center mb-3">
+                        <span class="badge bg-success-soft">Beginner</span>
+                        <a href="#" class="text-muted fs-5"><i class="fe fe-heart align-middle"></i></a>
+                      </div>
+                      <h4 class="mb-2 text-truncate-line-2 "><a href="../course-single.html" class="text-inherit">The
+                          Python
+                          Course: build web application</a></h4>
+
+                      <small>By: Douglas Howell</small>
+                      <div class="lh-1 mt-3">
+                        <span>
+                          <i class="mdi mdi-star text-warning me-n1"></i>
+                          <i class="mdi mdi-star text-warning me-n1"></i>
+                          <i class="mdi mdi-star text-warning me-n1"></i>
+                          <i class="mdi mdi-star text-warning me-n1"></i>
+                          <i class="mdi mdi-star text-warning"></i>
+                        </span>
+                        <span class="text-warning">4.5</span>
+                        <span class="fs-6 text-muted">(13,245)</span>
+                      </div>
+                    </div>
+                    <!-- Card Footer -->
+                    <div class="card-footer">
+                      <div class="row align-items-center g-0">
+                        <div class="col">
+                          <h5 class="mb-0">$19.00</h5>
+                        </div>
+
+                        <div class="col-auto">
+                          <a href="#" class="text-inherit">
+                            <i class="fe fe-shopping-cart text-primary align-middle me-2"></i>Get Enrolled
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
+
+
+              </div>
+            </div>
+            <div class="tab-pane fade" id="pills-business" role="tabpanel" aria-labelledby="pills-business-tab">
+              <div class="row row-cols-2 row-cols-lg-4 g-4">
+                <div class="col">
+                  <!-- Card -->
+                  <div class="card card-hover">
+                    <a href="../course-single.html" class="card-img-top"><img src="../../assets/images/course/course-wordpress-1.jpg" alt="" class="rounded-top-md card-img-top"></a>
+                    <!-- Card Body -->
+                    <div class="card-body">
+                      <div class="d-flex justify-content-between align-items-center mb-3">
+                        <span class="badge bg-danger-soft">Advance</span>
+                        <a href="#" class="text-muted fs-5"><i class="fe fe-heart align-middle"></i></a>
+                      </div>
+                      <h4 class="mb-2 text-truncate-line-2 "><a href="../course-single.html" class="text-inherit">WordPress:
+                          introduction to wordpress for beginners</a></h4>
+
+                      <small>By: Victor Elliott</small>
+                      <div class="lh-1 mt-3">
+                        <span>
+                          <i class="mdi mdi-star text-warning me-n1"></i>
+                          <i class="mdi mdi-star text-warning me-n1"></i>
+                          <i class="mdi mdi-star text-warning me-n1"></i>
+                          <i class="mdi mdi-star text-warning me-n1"></i>
+                          <i class="mdi mdi-star text-warning"></i>
+                        </span>
+                        <span class="text-warning">4.5</span>
+                        <span class="fs-6 text-muted">(9,300)</span>
+                      </div>
+                    </div>
+                    <!-- Card Footer -->
+                    <div class="card-footer">
+                      <div class="row align-items-center g-0">
+                        <div class="col">
+                          <h5 class="mb-0">$39.00</h5>
+                        </div>
+
+                        <div class="col-auto">
+                          <a href="#" class="text-inherit">
+                            <i class="fe fe-shopping-cart text-primary align-middle me-2"></i>Get Enrolled
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col">
+                  <!-- Card -->
+                  <div class="card card-hover">
+                    <a href="../course-single.html" class="card-img-top"><img src="../../assets/images/course/course-python-1.jpg" alt="" class="card-img-top rounded-top-md"></a>
+                    <!-- Card Body -->
+                    <div class="card-body">
+                      <div class="d-flex justify-content-between align-items-center mb-3">
+                        <span class="badge bg-success-soft">Beginner</span>
+                        <a href="#" class="text-muted fs-5"><i class="fe fe-heart align-middle"></i></a>
+                      </div>
+                      <h4 class="mb-2 text-truncate-line-2 "><a href="../course-single.html" class="text-inherit">The
+                          Python
+                          Course: build web application</a></h4>
+
+                      <small>By: Douglas Howell</small>
+                      <div class="lh-1 mt-3">
+                        <span>
+                          <i class="mdi mdi-star text-warning me-n1"></i>
+                          <i class="mdi mdi-star text-warning me-n1"></i>
+                          <i class="mdi mdi-star text-warning me-n1"></i>
+                          <i class="mdi mdi-star text-warning me-n1"></i>
+                          <i class="mdi mdi-star text-warning"></i>
+                        </span>
+                        <span class="text-warning">4.5</span>
+                        <span class="fs-6 text-muted">(13,245)</span>
+                      </div>
+                    </div>
+                    <!-- Card Footer -->
+                    <div class="card-footer">
+                      <div class="row align-items-center g-0">
+                        <div class="col">
+                          <h5 class="mb-0">$19.00</h5>
+                        </div>
+
+                        <div class="col-auto">
+                          <a href="#" class="text-inherit">
+                            <i class="fe fe-shopping-cart text-primary align-middle me-2"></i>Get Enrolled
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col">
+                  <!-- Card -->
+                  <div class="card card-hover">
+                    <a href="../course-single.html" class="card-img-top"><img src="../../assets/images/course/course-react-1.jpg" alt="" class="rounded-top-md card-img-top"></a>
+                    <!-- Card Body -->
+                    <div class="card-body">
+                      <div class="d-flex justify-content-between align-items-center mb-3">
+                        <span class="badge bg-info-soft">Intermediate</span>
+                        <a href="#" class="text-muted fs-5"><i class="fe fe-heart align-middle"></i></a>
+                      </div>
+                      <h4 class="mb-2 text-truncate-line-2 "><a href="../course-single.html" class="text-inherit">How
+                          to
+                          easily create a website with React</a></h4>
+                      <!-- List -->
+                      <small>By: Morris Mccoy</small>
+                      <div class="lh-1 mt-3">
+                        <span>
+                          <i class="mdi mdi-star text-warning me-n1"></i>
+                          <i class="mdi mdi-star text-warning me-n1"></i>
+                          <i class="mdi mdi-star text-warning me-n1"></i>
+                          <i class="mdi mdi-star text-warning me-n1"></i>
+                          <i class="mdi mdi-star text-warning"></i>
+                        </span>
+                        <span class="text-warning">4.5</span>
+                        <span class="fs-6 text-muted">(7,700)</span>
+                      </div>
+                    </div>
+                    <!-- Card Footer -->
+                    <div class="card-footer">
+                      <div class="row align-items-center g-0">
+                        <div class="col">
+                          <h5 class="mb-0">$29.00</h5>
+                        </div>
+
+                        <div class="col-auto">
+                          <a href="#" class="text-inherit">
+                            <i class="fe fe-shopping-cart text-primary align-middle me-2"></i>Get Enrolled
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col">
+                  <!-- Card -->
+                  <div class="card card-hover">
+                    <a href="../course-single.html" class="card-img-top"><img src="../../assets/images/course/course-graphql-1.jpg" alt="" class="rounded-top-md card-img-top"></a>
+                    <!-- Card Body -->
+                    <div class="card-body">
+                      <div class="d-flex justify-content-between align-items-center mb-3">
+                        <span class="badge bg-success-soft">Beginner</span>
+                        <a href="#" class="text-muted fs-5"><i class="fe fe-heart align-middle"></i></a>
+                      </div>
+                      <h4 class="mb-2 text-truncate-line-2 "><a href="../course-single.html" class="text-inherit">GraphQL:
+                          introduction to graphQL for beginners</a></h4>
+
+                      <small>By: Michael Cundiff</small>
+                      <div class="lh-1 mt-3">
+                        <span>
+                          <i class="mdi mdi-star text-warning me-n1"></i>
+                          <i class="mdi mdi-star text-warning me-n1"></i>
+                          <i class="mdi mdi-star text-warning me-n1"></i>
+                          <i class="mdi mdi-star text-warning me-n1"></i>
+                          <i class="mdi mdi-star text-warning"></i>
+                        </span>
+                        <span class="text-warning">4.5</span>
+                        <span class="fs-6 text-muted">(9,300)</span>
+                      </div>
+                    </div>
+                    <!-- Card Footer -->
+                    <div class="card-footer">
+                      <div class="row align-items-center g-0">
+                        <div class="col">
+                          <h5 class="mb-0">Free</h5>
+                        </div>
+
+                        <div class="col-auto">
+                          <a href="#" class="text-inherit">
+                            <i class="fe fe-shopping-cart text-primary align-middle me-2"></i>Get Enrolled
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col">
+                  <!-- Card -->
+                  <div class="card card-hover">
+                    <a href="../course-single.html" class="card-img-top"><img src="../../assets/images/course/course-angular-1.jpg" alt="" class="card-img-top rounded-top-md"></a>
+                    <!-- Card Body -->
+                    <div class="card-body">
+                      <div class="d-flex justify-content-between align-items-center mb-3">
+                        <span class="badge bg-danger-soft">Advance</span>
+                        <a href="#" class="text-muted fs-5"><i class="fe fe-heart align-middle"></i></a>
+                      </div>
+                      <h4 class="mb-2 text-truncate-line-2 "><a href="../course-single.html" class="text-inherit">Angular -
+                          the complete guide for beginner</a></h4>
+
+                      <small>By: Jeffrey McCoy</small>
+                      <div class="lh-1 mt-3">
+                        <span>
+                          <i class="mdi mdi-star text-warning me-n1"></i>
+                          <i class="mdi mdi-star text-warning me-n1"></i>
+                          <i class="mdi mdi-star text-warning me-n1"></i>
+                          <i class="mdi mdi-star text-warning me-n1"></i>
+                          <i class="mdi mdi-star text-warning"></i>
+                        </span>
+                        <span class="text-warning">4.5</span>
+                        <span class="fs-6 text-muted">(8,890)</span>
+                      </div>
+                    </div>
+                    <!-- Card Footer -->
+                    <div class="card-footer">
+                      <div class="row align-items-center g-0">
+                        <div class="col">
+                          <h5 class="mb-0">$49.00</h5>
+                        </div>
+
+                        <div class="col-auto">
+                          <a href="#" class="text-inherit">
+                            <i class="fe fe-shopping-cart text-primary align-middle me-2"></i>Get Enrolled
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col">
+                  <!-- Card -->
+                  <div class="card card-hover">
+                    <a href="../course-single.html" class="card-img-top"><img src="../../assets/images/course/course-javascript-1.jpg" alt="" class="rounded-top-md card-img-top"></a>
+                    <!-- Card Body -->
+                    <div class="card-body">
+                      <div class="d-flex justify-content-between align-items-center mb-3">
+                        <span class="badge bg-info-soft">Intermediate</span>
+                        <a href="#" class="text-muted fs-5"><i class="fe fe-heart align-middle"></i></a>
+                      </div>
+                      <h4 class="mb-2 text-truncate-line-2 "><a href="../course-single.html" class="text-inherit">How to
+                          easily create a website with JavaScript </a></h4>
+
+                      <small>By: Claire Evans</small>
+                      <div class="lh-1 mt-3">
+                        <span>
+                          <i class="mdi mdi-star text-warning me-n1"></i>
+                          <i class="mdi mdi-star text-warning me-n1"></i>
+                          <i class="mdi mdi-star text-warning me-n1"></i>
+                          <i class="mdi mdi-star text-warning me-n1"></i>
+                          <i class="mdi mdi-star text-warning"></i>
+                        </span>
+                        <span class="text-warning">4.5</span>
+                        <span class="fs-6 text-muted">(9,300)</span>
+                      </div>
+                    </div>
+                    <!-- Card Footer -->
+                    <div class="card-footer">
+                      <div class="row align-items-center g-0">
+                        <div class="col">
+                          <h5 class="mb-0">$39.00</h5>
+                        </div>
+
+                        <div class="col-auto">
+                          <a href="#" class="text-inherit">
+                            <i class="fe fe-shopping-cart text-primary align-middle me-2"></i>Get Enrolled
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col">
+                  <!-- Card -->
+                  <div class="card card-hover">
+                    <a href="../course-single.html" class="card-img-top"><img src="../../assets/images/course/course-css-1.jpg" alt="" class="card-img-top rounded-top-md"></a>
+                    <!-- Card Body -->
+                    <div class="card-body">
+                      <div class="d-flex justify-content-between align-items-center mb-3">
+                        <span class="badge bg-danger-soft">Beginner</span>
+                        <a href="#" class="text-muted fs-5"><i class="fe fe-heart align-middle"></i></a>
+                      </div>
+                      <h4 class="mb-2 text-truncate-line-2 "><a href="../course-single.html" class="text-inherit">CSS:
+                          ultimate CSS course from beginner to advanced</a></h4>
+
+                      <small>By: Carolyn Welborn</small>
+                      <div class="lh-1 mt-3">
+                        <span>
+                          <i class="mdi mdi-star text-warning me-n1"></i>
+                          <i class="mdi mdi-star text-warning me-n1"></i>
+                          <i class="mdi mdi-star text-warning me-n1"></i>
+                          <i class="mdi mdi-star text-warning me-n1"></i>
+                          <i class="mdi mdi-star text-warning"></i>
+                        </span>
+                        <span class="text-warning">4.5</span>
+                        <span class="fs-6 text-muted">(8,890)</span>
+                      </div>
+                    </div>
+                    <!-- Card Footer -->
+                    <div class="card-footer">
+                      <div class="row align-items-center g-0">
+                        <div class="col">
+                          <h5 class="mb-0">$30.00</h5>
+                        </div>
+
+                        <div class="col-auto">
+                          <a href="#" class="text-inherit">
+                            <i class="fe fe-shopping-cart text-primary align-middle me-2"></i>Get Enrolled
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col">
+                  <!-- Card -->
+                  <div class="card card-hover">
+                    <a href="../course-single.html" class="card-img-top"><img src="../../assets/images/course/course-gatsby-1.jpg" alt="" class="card-img-top rounded-top-md"></a>
+                    <!-- Card Body -->
+                    <div class="card-body">
+                      <div class="d-flex justify-content-between align-items-center mb-3">
+                        <span class="badge bg-info-soft">Intermediate</span>
+                        <a href="#" class="text-muted fs-5"><i class="fe fe-heart align-middle"></i></a>
+                      </div>
+                      <h4 class="mb-2 text-truncate-line-2 "><a href="../course-single.html" class="text-inherit">The
+                          Gatsby
+                          Course: build web application</a></h4>
+
+                      <small>By: Floyd Amall</small>
+                      <div class="lh-1 mt-3">
+                        <span>
+                          <i class="mdi mdi-star text-warning me-n1"></i>
+                          <i class="mdi mdi-star text-warning me-n1"></i>
+                          <i class="mdi mdi-star text-warning me-n1"></i>
+                          <i class="mdi mdi-star text-warning me-n1"></i>
+                          <i class="mdi mdi-star text-warning"></i>
+                        </span>
+                        <span class="text-warning">4.5</span>
+                        <span class="fs-6 text-muted">(13,245)</span>
+                      </div>
+                    </div>
+                    <!-- Card Footer -->
+                    <div class="card-footer">
+                      <div class="row align-items-center g-0">
+                        <div class="col">
+                          <h5 class="mb-0">$34.00</h5>
+                        </div>
+
+                        <div class="col-auto">
+                          <a href="#" class="text-inherit">
+                            <i class="fe fe-shopping-cart text-primary align-middle me-2"></i>Get Enrolled
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
+
+
+
+              </div>
+            </div>
+            <div class="tab-pane fade" id="pills-health" role="tabpanel" aria-labelledby="pills-health-tab">
+              <div class="row row-cols-2 row-cols-lg-4 g-4">
+                <div class="col">
+                  <!-- Card -->
+                  <div class="card card-hover">
+                    <a href="../course-single.html" class="card-img-top"><img src="../../assets/images/course/course-python-1.jpg" alt="" class="card-img-top rounded-top-md"></a>
+                    <!-- Card Body -->
+                    <div class="card-body">
+                      <div class="d-flex justify-content-between align-items-center mb-3">
+                        <span class="badge bg-success-soft">Beginner</span>
+                        <a href="#" class="text-muted fs-5"><i class="fe fe-heart align-middle"></i></a>
+                      </div>
+                      <h4 class="mb-2 text-truncate-line-2 "><a href="../course-single.html" class="text-inherit">The
+                          Python
+                          Course: build web application</a></h4>
+
+                      <small>By: Douglas Howell</small>
+                      <div class="lh-1 mt-3">
+                        <span>
+                          <i class="mdi mdi-star text-warning me-n1"></i>
+                          <i class="mdi mdi-star text-warning me-n1"></i>
+                          <i class="mdi mdi-star text-warning me-n1"></i>
+                          <i class="mdi mdi-star text-warning me-n1"></i>
+                          <i class="mdi mdi-star text-warning"></i>
+                        </span>
+                        <span class="text-warning">4.5</span>
+                        <span class="fs-6 text-muted">(13,245)</span>
+                      </div>
+                    </div>
+                    <!-- Card Footer -->
+                    <div class="card-footer">
+                      <div class="row align-items-center g-0">
+                        <div class="col">
+                          <h5 class="mb-0">$19.00</h5>
+                        </div>
+
+                        <div class="col-auto">
+                          <a href="#" class="text-inherit">
+                            <i class="fe fe-shopping-cart text-primary align-middle me-2"></i>Get Enrolled
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
+                <div class="col">
+                  <!-- Card -->
+                  <div class="card card-hover">
+                    <a href="../course-single.html" class="card-img-top"><img src="../../assets/images/course/course-wordpress-1.jpg" alt="" class="rounded-top-md card-img-top"></a>
+                    <!-- Card Body -->
+                    <div class="card-body">
+                      <div class="d-flex justify-content-between align-items-center mb-3">
+                        <span class="badge bg-danger-soft">Advance</span>
+                        <a href="#" class="text-muted fs-5"><i class="fe fe-heart align-middle"></i></a>
+                      </div>
+                      <h4 class="mb-2 text-truncate-line-2 "><a href="../course-single.html" class="text-inherit">WordPress:
+                          introduction to wordpress for beginners</a></h4>
+
+                      <small>By: Victor Elliott</small>
+                      <div class="lh-1 mt-3">
+                        <span>
+                          <i class="mdi mdi-star text-warning me-n1"></i>
+                          <i class="mdi mdi-star text-warning me-n1"></i>
+                          <i class="mdi mdi-star text-warning me-n1"></i>
+                          <i class="mdi mdi-star text-warning me-n1"></i>
+                          <i class="mdi mdi-star text-warning"></i>
+                        </span>
+                        <span class="text-warning">5</span>
+                        <span class="fs-6 text-muted">(9,300)</span>
+                      </div>
+                    </div>
+                    <!-- Card Footer -->
+                    <div class="card-footer">
+                      <div class="row align-items-center g-0">
+                        <div class="col">
+                          <h5 class="mb-0">$39.00</h5>
+                        </div>
+
+                        <div class="col-auto">
+                          <a href="#" class="text-inherit">
+                            <i class="fe fe-shopping-cart text-primary align-middle me-2"></i>Get Enrolled
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col">
+                  <!-- Card -->
+                  <div class="card card-hover">
+                    <a href="../course-single.html" class="card-img-top"><img src="../../assets/images/course/course-react-1.jpg" alt="" class="rounded-top-md card-img-top"></a>
+                    <!-- Card Body -->
+                    <div class="card-body">
+                      <div class="d-flex justify-content-between align-items-center mb-3">
+                        <span class="badge bg-info-soft">Intermediate</span>
+                        <a href="#" class="text-muted fs-5"><i class="fe fe-heart align-middle"></i></a>
+                      </div>
+                      <h4 class="mb-2 text-truncate-line-2 "><a href="../course-single.html" class="text-inherit">How
+                          to
+                          easily create a website with React</a></h4>
+                      <!-- List -->
+                      <small>By: Morris Mccoy</small>
+                      <div class="lh-1 mt-3">
+                        <span>
+                          <i class="mdi mdi-star text-warning me-n1"></i>
+                          <i class="mdi mdi-star text-warning me-n1"></i>
+                          <i class="mdi mdi-star text-warning me-n1"></i>
+                          <i class="mdi mdi-star text-warning me-n1"></i>
+                          <i class="mdi mdi-star text-warning"></i>
+                        </span>
+                        <span class="text-warning">3.5</span>
+                        <span class="fs-6 text-muted">(7,700)</span>
+                      </div>
+                    </div>
+                    <!-- Card Footer -->
+                    <div class="card-footer">
+                      <div class="row align-items-center g-0">
+                        <div class="col">
+                          <h5 class="mb-0">$29.00</h5>
+                        </div>
+
+                        <div class="col-auto">
+                          <a href="#" class="text-inherit">
+                            <i class="fe fe-shopping-cart text-primary align-middle me-2"></i>Get Enrolled
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col">
+                  <!-- Card -->
+                  <div class="card card-hover">
+                    <a href="../course-single.html" class="card-img-top"><img src="../../assets/images/course/course-graphql-1.jpg" alt="" class="rounded-top-md card-img-top"></a>
+                    <!-- Card Body -->
+                    <div class="card-body">
+                      <div class="d-flex justify-content-between align-items-center mb-3">
+                        <span class="badge bg-success-soft">Beginner</span>
+                        <a href="#" class="text-muted fs-5"><i class="fe fe-heart align-middle"></i></a>
+                      </div>
+                      <h4 class="mb-2 text-truncate-line-2 "><a href="../course-single.html" class="text-inherit">GraphQL:
+                          introduction to graphQL for beginners</a></h4>
+
+                      <small>By: Michael Cundiff</small>
+                      <div class="lh-1 mt-3">
+                        <span>
+                          <i class="mdi mdi-star text-warning me-n1"></i>
+                          <i class="mdi mdi-star text-warning me-n1"></i>
+                          <i class="mdi mdi-star text-warning me-n1"></i>
+                          <i class="mdi mdi-star text-warning me-n1"></i>
+                          <i class="mdi mdi-star text-muted"></i>
+                        </span>
+                        <span class="text-warning">4</span>
+                        <span class="fs-6 text-muted">(9,300)</span>
+                      </div>
+                    </div>
+                    <!-- Card Footer -->
+                    <div class="card-footer">
+                      <div class="row align-items-center g-0">
+                        <div class="col">
+                          <h5 class="mb-0">Free</h5>
+                        </div>
+
+                        <div class="col-auto">
+                          <a href="#" class="text-inherit">
+                            <i class="fe fe-shopping-cart text-primary align-middle me-2"></i>Get Enrolled
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col">
+                  <!-- Card -->
+                  <div class="card card-hover">
+                    <a href="../course-single.html" class="card-img-top"><img src="../../assets/images/course/course-javascript-1.jpg" alt="" class="rounded-top-md card-img-top"></a>
+                    <!-- Card Body -->
+                    <div class="card-body">
+                      <div class="d-flex justify-content-between align-items-center mb-3">
+                        <span class="badge bg-info-soft">Intermediate</span>
+                        <a href="#" class="text-muted fs-5"><i class="fe fe-heart align-middle"></i></a>
+                      </div>
+                      <h4 class="mb-2 text-truncate-line-2 "><a href="../course-single.html" class="text-inherit">How to
+                          easily create a website with JavaScript </a></h4>
+
+                      <small>By: Claire Evans</small>
+                      <div class="lh-1 mt-3">
+                        <span>
+                          <i class="mdi mdi-star text-warning me-n1"></i>
+                          <i class="mdi mdi-star text-warning me-n1"></i>
+                          <i class="mdi mdi-star text-warning me-n1"></i>
+                          <i class="mdi mdi-star text-warning me-n1"></i>
+                          <i class="mdi mdi-star text-muted"></i>
+                        </span>
+                        <span class="text-warning">3.5</span>
+                        <span class="fs-6 text-muted">(9,300)</span>
+                      </div>
+                    </div>
+                    <!-- Card Footer -->
+                    <div class="card-footer">
+                      <div class="row align-items-center g-0">
+                        <div class="col">
+                          <h5 class="mb-0">$39.00</h5>
+                        </div>
+
+                        <div class="col-auto">
+                          <a href="#" class="text-inherit">
+                            <i class="fe fe-shopping-cart text-primary align-middle me-2"></i>Get Enrolled
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col">
+                  <!-- Card -->
+                  <div class="card card-hover">
+                    <a href="../course-single.html" class="card-img-top"><img src="../../assets/images/course/course-css-1.jpg" alt="" class="card-img-top rounded-top-md"></a>
+                    <!-- Card Body -->
+                    <div class="card-body">
+                      <div class="d-flex justify-content-between align-items-center mb-3">
+                        <span class="badge bg-danger-soft">Beginner</span>
+                        <a href="#" class="text-muted fs-5"><i class="fe fe-heart align-middle"></i></a>
+                      </div>
+                      <h4 class="mb-2 text-truncate-line-2 "><a href="../course-single.html" class="text-inherit">CSS:
+                          ultimate CSS course from beginner to advanced</a></h4>
+
+                      <small>By: Carolyn Welborn</small>
+                      <div class="lh-1 mt-3">
+                        <span>
+                          <i class="mdi mdi-star text-warning me-n1"></i>
+                          <i class="mdi mdi-star text-warning me-n1"></i>
+                          <i class="mdi mdi-star text-warning me-n1"></i>
+                          <i class="mdi mdi-star text-warning me-n1"></i>
+                          <i class="mdi mdi-star text-warning"></i>
+                        </span>
+                        <span class="text-warning">5</span>
+                        <span class="fs-6 text-muted">(8,890)</span>
+                      </div>
+                    </div>
+                    <!-- Card Footer -->
+                    <div class="card-footer">
+                      <div class="row align-items-center g-0">
+                        <div class="col">
+                          <h5 class="mb-0">$30.00</h5>
+                        </div>
+
+                        <div class="col-auto">
+                          <a href="#" class="text-inherit">
+                            <i class="fe fe-shopping-cart text-primary align-middle me-2"></i>Get Enrolled
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col">
+                  <!-- Card -->
+                  <div class="card card-hover">
+                    <a href="../course-single.html" class="card-img-top"><img src="../../assets/images/course/course-gatsby-1.jpg" alt="" class="card-img-top rounded-top-md"></a>
+                    <!-- Card Body -->
+                    <div class="card-body">
+                      <div class="d-flex justify-content-between align-items-center mb-3">
+                        <span class="badge bg-info-soft">Intermediate</span>
+                        <a href="#" class="text-muted fs-5"><i class="fe fe-heart align-middle"></i></a>
+                      </div>
+                      <h4 class="mb-2 text-truncate-line-2 "><a href="../course-single.html" class="text-inherit">The
+                          Gatsby
+                          Course: build web application</a></h4>
+
+                      <small>By: Floyd Amall</small>
+                      <div class="lh-1 mt-3">
+                        <span>
+                          <i class="mdi mdi-star text-warning me-n1"></i>
+                          <i class="mdi mdi-star text-warning me-n1"></i>
+                          <i class="mdi mdi-star text-warning me-n1"></i>
+                          <i class="mdi mdi-star text-warning me-n1"></i>
+                          <i class="mdi mdi-star text-warning"></i>
+                        </span>
+                        <span class="text-warning">4.5</span>
+                        <span class="fs-6 text-muted">(13,245)</span>
+                      </div>
+                    </div>
+                    <!-- Card Footer -->
+                    <div class="card-footer">
+                      <div class="row align-items-center g-0">
+                        <div class="col">
+                          <h5 class="mb-0">$34.00</h5>
+                        </div>
+
+                        <div class="col-auto">
+                          <a href="#" class="text-inherit">
+                            <i class="fe fe-shopping-cart text-primary align-middle me-2"></i>Get Enrolled
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col">
+                  <!-- Card -->
+                  <div class="card card-hover">
+                    <a href="../course-single.html" class="card-img-top"><img src="../../assets/images/course/course-angular-1.jpg" alt="" class="card-img-top rounded-top-md"></a>
+                    <!-- Card Body -->
+                    <div class="card-body">
+                      <div class="d-flex justify-content-between align-items-center mb-3">
+                        <span class="badge bg-danger-soft">Advance</span>
+                        <a href="#" class="text-muted fs-5"><i class="fe fe-heart align-middle"></i></a>
+                      </div>
+                      <h4 class="mb-2 text-truncate-line-2 "><a href="../course-single.html" class="text-inherit">Angular -
+                          the complete guide for beginner</a></h4>
+
+                      <small>By: Jeffrey McCoy</small>
+                      <div class="lh-1 mt-3">
+                        <span>
+                          <i class="mdi mdi-star text-warning me-n1"></i>
+                          <i class="mdi mdi-star text-warning me-n1"></i>
+                          <i class="mdi mdi-star text-warning me-n1"></i>
+                          <i class="mdi mdi-star text-warning me-n1"></i>
+                          <i class="mdi mdi-star text-warning"></i>
+                        </span>
+                        <span class="text-warning">4.5</span>
+                        <span class="fs-6 text-muted">(8,890)</span>
+                      </div>
+                    </div>
+                    <!-- Card Footer -->
+                    <div class="card-footer">
+                      <div class="row align-items-center g-0">
+                        <div class="col">
+                          <h5 class="mb-0">$49.00</h5>
+                        </div>
+
+                        <div class="col-auto">
+                          <a href="#" class="text-inherit">
+                            <i class="fe fe-shopping-cart text-primary align-middle me-2"></i>Get Enrolled
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- section -->
+  <section class="my-lg-14 mb-8">
+    <!-- container -->
+    <div class="container bg-primary rounded-3">
+      <!-- row -->
+      <div class="row align-items-center">
+        <!-- col -->
+        <div class="col-lg-6 col-12 d-none d-lg-block">
+          <div class="d-flex justify-content-center ">
+            <!-- img -->
+            <div class="position-relative">
+              <img src="../../assets/images/png/cta-instructor-1-1.png" alt="" class="img-fluid mt-n13">
+              <div class="ms-n12 position-absolute bottom-0 start-0 mb-6">
+                <img src="../../assets/images/svg/dollor-1.svg" alt="">
+              </div>
+              <!-- img -->
+              <div class="me-n4 position-absolute top-0 end-0">
+                <img src="../../assets/images/svg/graph-1.svg" alt="">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-5 col-12">
+          <div class="text-white p-5 p-lg-0">
+            <!-- text -->
+            <h2 class="h1 text-white">Fikir üretin, paylaşın ve para kazanın.</h2>
+            <p class="mb-0">Kendi şehriniz veya Türkiye için Bastoliday politikalarına uygun bir fikir üretin ve para kazanın.</p>
+            <a href="./staticIdeaUrl.html" class="btn btn-white mt-4"><i class="fa fa-plus" style="padding-right: 5px;"></i> Fikir üret</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- section -->
+  <section class=" bg-gray-200 pt-14 pb-16">
+    <div class="container">
+      <!-- row -->
+      <div class="row mb-10">
+        <div class="offset-lg-1 col-lg-10 col-12">
+          <div class="row align-items-center">
+            <!-- col -->
+            <div class="col-md-6">
+              <!-- rating -->
+              <div class="">
+                <div class="mb-3"><span class="text-dark fw-semi-bold">4.5/5.0</span> <span>
+                    <i class="fa fa-star text-warning me-n1"></i>
+                    <i class="fa fa-star text-warning me-n1"></i>
+                    <i class="fa fa-star text-warning me-n1"></i>
+                    <i class="fa fa-star text-warning me-n1"></i>
+                    <i class="fa fa-star text-warning"></i>
+                  </span>
+                  <span class="text-warning">5.0</span><span class="ms-2">Bastoliday</span></div>
+                  <!-- heading -->
+                <h2 class="h1">Bastoliday Değerlendirmeleri</h2>
+                <p class="mb-0"> Bastoliday ile kendi şehriniz için geliştirme fikirleri, ihtiyaç fikirleri (daha önceden olmayan) üretirsiniz.<br/>Daha sonra eğer fikriniz topluluğun beğenisini kazanırsa fikrinizi Bastoliday ekibi bizzat kendisi inceler ve eğer kullanıma uygunsa fikriniz yetkili ekiplere iletilir.<br/>Daha sonra fikriniz tekrardan 30 gün boyunca topluluğun beğenisine sunulur ve 30 günün sonunda aldığı beğeni sayısına göre para alırsınız. (Her 500 beğenide 100₺)</p>
+
+              </div>
+            </div>
+            <div class="col-md-6 text-md-end mt-4 mt-md-0">
+              <!-- btn -->
+              <a href="./staticIdeaUrl.html" class="btn btn-primary">Hemen Başla</a>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- row -->
+      <div class="row">
+        <!-- col -->
+        <div class="col-md-12">
+          <div class="position-relative">
+            <!-- controls -->
+            <ul class="controls-testimonial controls " id="sliderTestimonialControls">
+              <li class="prev">
+                <i class="fa fa-chevron-left"></i>
+              </li>
+              <li class="next ms-2">
+                <i class="fa fa-chevron-right"></i>
+              </li>
+            </ul>
+            <!-- slider -->
+            <div class="sliderTestimonial">
+              <!-- item -->
+              <div class="item">
+                <div class="card">
+                  <div class="card-body text-center p-6">
+                    <!-- img -->
+                    <img src="../../assets/images/avatar/avatar-1-1.jpg" alt="" class="avatar avatar-lg rounded-circle">
+                    <p class="mb-0 mt-3">“Bastoliday ile hem kendi şehrimi geliştiriyorum hem de para kazanıyorum”</p>
+                      <!-- rating -->
+                    <div class="lh-1 mb-3 mt-4">
+                      <span>
+                        <i class="fa fa-star text-warning me-n1"></i>
+                        <i class="fa fa-star text-warning me-n1"></i>
+                        <i class="fa fa-star text-warning me-n1"></i>
+                        <i class="fa fa-star text-warning me-n1"></i>
+                        <i class="fa fa-star text-warning me-n1"></i>
+                      </span>
+                      <span class="text-warning">5.0</span>
+<!-- text -->
+                    </div>
+                    <h3 class="mb-0 h4">Bastoliday Kullanıcısı</h3>
+                    <span>Kullanıcı ID: 00542712552</span>
+                  </div>
+                </div>
+              </div>
+              <!-- item -->
+              <div class="item">
+                <div class="card">
+                  <div class="card-body text-center p-6">
+                    <!-- img -->
+                    <img src="../../assets/images/avatar/avatar-2-1.jpg" alt="" class="avatar avatar-lg rounded-circle">
+                    <p class="mb-0 mt-3">“Bastoliday çok iyi”</p>
+                      <!-- rating -->
+                    <div class="lh-1 mb-3 mt-4">
+                      <span>
+                        <i class="fa fa-star text-warning me-n1"></i>
+                        <i class="fa fa-star text-warning me-n1"></i>
+                        <i class="fa fa-star text-warning me-n1"></i>
+                        <i class="fa fa-star text-warning me-n1"></i>
+                        <i class="fa fa-star text-warning me-n1"></i>
+                      </span>
+                      <span class="text-warning">5.0</span>
+
+                    </div>
+                    <!-- text -->
+                    <h3 class="mb-0 h4">Bastoliday Kullanıcısı</h3>
+                    <span>Kullanıcı ID: 0023783247</span>
+                  </div>
+                </div>
+              </div>
+              <!-- item -->
+              <div class="item">
+                <div class="card">
+                  <div class="card-body text-center p-6">
+                    <!-- img -->
+                    <img src="../../assets/images/avatar/avatar-3-1.jpg" alt="" class="avatar avatar-lg rounded-circle">
+                    <p class="mb-0 mt-3">“Daha önce böyle bir uygulama olmaması gerçekten şaşırtıcı”</p>
+                      <!-- rating -->
+                    <div class="lh-1 mb-3 mt-4">
+                      <span>
+                        <i class="fa fa-star text-warning me-n1"></i>
+                        <i class="fa fa-star text-warning me-n1"></i>
+                        <i class="fa fa-star text-warning me-n1"></i>
+                        <i class="fa fa-star text-warning me-n1"></i>
+                        <i class="fa fa-star text-warning me-n1"></i>
+                      </span>
+                      <span class="text-warning">5.0</span>
+
+                    </div>
+                    <!-- text -->
+                    <h3 class="mb-0 h4">Bastoliday Kullanıcısı</h3>
+                    <span>Kullanıcı ID: 82199821</span>
+                  </div>
+                </div>
+              </div>
+              <!-- item -->
+              <div class="item">
+                <div class="card">
+                  <div class="card-body text-center p-6">
+                    <!-- img -->
+                    <img src="../../assets/images/avatar/avatar-4-1.jpg" alt="" class="avatar avatar-lg rounded-circle">
+                    <p class="mb-0 mt-3">“Kullanmaya başlayalı henüz 1.5 ay oldu ve ilk paramı aldım bile”</p>
+                      <!-- rating -->
+                    <div class="lh-1 mb-3 mt-4">
+                      <span>
+                        <i class="fa fa-star text-warning me-n1"></i>
+                        <i class="fa fa-star text-warning me-n1"></i>
+                        <i class="fa fa-star text-warning me-n1"></i>
+                        <i class="fa fa-star text-warning me-n1"></i>
+                        <i class="fa fa-star text-warning me-n1"></i>
+                      </span>
+                      <span class="text-warning">5.0</span>
+
+                    </div>
+                    <!-- text -->
+                    <h3 class="mb-0 h4">Bastoliday Kullanıcısı</h3>
+                    <span>Kullanıcı ID: 9812390</span>
+                  </div>
+                </div>
+              </div>
+              <div class="item">
+                <div class="card">
+                  <div class="card-body text-center p-6">
+                    <!-- img -->
+                    <img src="../../assets/images/avatar/avatar-5-1.jpg" alt="" class="avatar avatar-lg rounded-circle">
+                    <p class="mb-0 mt-3">“İlk başlarda ödeme yapmaz diyordum fakat ilk ödememi geçen gün aldım :)”</p>
+                    <div class="lh-1 mb-3 mt-4">
+                      <!-- rating -->
+                      <span>
+                        <i class="fa fa-star text-warning me-n1"></i>
+                        <i class="fa fa-star text-warning me-n1"></i>
+                        <i class="fa fa-star text-warning me-n1"></i>
+                        <i class="fa fa-star text-warning me-n1"></i>
+                        <i class="fa fa-star text-warning me-n1"></i>
+                      </span>
+                      <span class="text-warning">5.0</span>
+
+                    </div>
+                    <!-- text -->
+                    <h3 class="mb-0 h4">Bastoliday Kullanıcısı</h3>
+                    <span>Kullanıcı ID: 000921381</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+</main>
+  <!-- Footer -->
+      <!-- footer -->
+    <footer class="pt-lg-10 pt-5 footer bg-white">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-4 col-md-6 col-12">
+            <!-- about company -->
+            <div class="mb-4">
+              <img src="../../assets/images/brand/logo/logo-1.svg" alt="" class="logo-inverse ">
+              <div class="mt-4">
+                <p>Geek is feature-rich components and beautifully Bootstrap UIKit for developers, built with bootstrap
+                  responsive framework.</p>
+                <!-- social media -->
+                <div class="fs-4 mt-4">
+                  <a href="#" class="mdi mdi-facebook fs-4 text-muted me-2"></a>
+                  <a href="#" class="mdi mdi-twitter text-muted me-2"></a>
+                  <a href="#" class="mdi mdi-instagram text-muted "></a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="offset-lg-1 col-lg-2 col-md-3 col-6">
+            <div class="mb-4">
+              <!-- list -->
+              <h3 class="fw-bold mb-3">Company</h3>
+              <ul class="list-unstyled nav nav-footer flex-column nav-x-0">
+                <li><a href="#" class="nav-link">About</a></li>
+                <li><a href="#" class="nav-link">Pricing</a></li>
+                <li><a href="#" class="nav-link">Blog</a></li>
+                <li><a href="#" class="nav-link">Careers</a></li>
+                <li><a href="#" class="nav-link">Contact</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-lg-2 col-md-3 col-6">
+            <div class="mb-4">
+              <!-- list -->
+              <h3 class="fw-bold mb-3">Support</h3>
+              <ul class="list-unstyled nav nav-footer flex-column nav-x-0">
+                <li><a href="#" class="nav-link">Help and Support</a></li>
+                <li><a href="#" class="nav-link">Become Instructor</a></li>
+                <li><a href="#" class="nav-link">Get the app</a></li>
+                <li><a href="#" class="nav-link">FAQ’s</a></li>
+                <li><a href="#" class="nav-link">Tutorial</a></li>
+              </ul>
+
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-12">
+            <!-- contact info -->
+            <div class="mb-4">
+              <h3 class="fw-bold mb-3">Get in touch</h3>
+              <p>339 McDermott Points Hettingerhaven, NV 15283</p>
+              <p class="mb-1">Email: <a href="#">support@geeksui.com</a></p>
+              <p>Phone: <span class="text-dark fw-semi-bold">(000) 123 456 789</span></p>
+              <div class="d-flex">
+                <a href="#"><img src="../../assets/images/svg/appstore-1.svg" alt="" class="img-fluid"></a>
+                <a href="#" class="ms-2"><img src="../../assets/images/svg/playstore-1.svg" alt="" class="img-fluid"></a>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <div class="row align-items-center g-0 border-top py-2 mt-6">
+          <!-- Desc -->
+          <div class="col-lg-10 col-12">
+            <div class="d-lg-flex align-items-center">
+              <div class="me-4">
+                <span>© 2022 Geeks-UI, Inc. All Rights Reserved</span>
+              </div>
+              <div>
+                <nav class="nav nav-footer">
+                  <a class="nav-link ps-0" href="#">Privacy Policy</a>
+                  <a class="nav-link px-2 px-md-3" href="#">Cookie Notice </a>
+                  <a class="nav-link d-none d-lg-block" href="#">Do Not Sell My Personal Information </a>
+                  <a class="nav-link" href="#">Terms of Use</a>
+                </nav>
+              </div>
+            </div>
+          </div>
+
+          <!-- Links -->
+          <div class="col-2  col-lg-2 d-md-flex justify-content-end">
+            <div class="dropdown">
+              <a href="#" class="dropdown-toggle text-body" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="fe fe-globe me-2 align-middle"></i>Language
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <li><a class="dropdown-item " href="#"><span class="me-2">
+                      <svg width="16" height="13" viewbox="0 0 16 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <g clip-path="url(#clip0_5543_19736)">
+                          <path d="M0 0.5H16V12.5H0V0.5Z" fill="#012169"></path>
+                          <path d="M1.875 0.5L7.975 5.025L14.05 0.5H16V2.05L10 6.525L16 10.975V12.5H14L8 8.025L2.025 12.5H0V11L5.975 6.55L0 2.1V0.5H1.875Z" fill="white"></path>
+                          <path d="M10.6 7.525L16 11.5V12.5L9.225 7.525H10.6ZM6 8.025L6.15 8.9L1.35 12.5H0L6 8.025ZM16 0.5V0.575L9.775 5.275L9.825 4.175L14.75 0.5H16ZM0 0.5L5.975 4.9H4.475L0 1.55V0.5Z" fill="#C8102E"></path>
+                          <path d="M6.025 0.5V12.5H10.025V0.5H6.025ZM0 4.5V8.5H16V4.5H0Z" fill="white"></path>
+                          <path d="M0 5.325V7.725H16V5.325H0ZM6.825 0.5V12.5H9.225V0.5H6.825Z" fill="#C8102E"></path>
+                        </g>
+                        <defs>
+                          <clippath id="clip0_5543_19736">
+                            <rect width="16" height="12" fill="white" transform="translate(0 0.5)"></rect>
+                          </clippath>
+                        </defs>
+                      </svg>
+                    </span>English</a></li>
+                <li><a class="dropdown-item " href="#"><span class="me-2">
+
+                      <svg width="16" height="13" viewbox="0 0 16 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <g clip-path="url(#clip0_5543_19744)">
+                          <path fill-rule="evenodd" clip-rule="evenodd" d="M0 0.5H16V12.5H0V0.5Z" fill="white"></path>
+                          <path fill-rule="evenodd" clip-rule="evenodd" d="M0 0.5H5.3325V12.5H0V0.5Z" fill="#002654"></path>
+                          <path fill-rule="evenodd" clip-rule="evenodd" d="M10.668 0.5H16.0005V12.5H10.668V0.5Z" fill="#CE1126"></path>
+                        </g>
+                        <defs>
+                          <clippath id="clip0_5543_19744">
+                            <rect width="16" height="12" fill="white" transform="translate(0 0.5)"></rect>
+                          </clippath>
+                        </defs>
+                      </svg>
+                    </span>Français</a></li>
+                <li>
+                  <a class="dropdown-item " href="#"><span class="me-2">
+                      <svg width="16" height="13" viewbox="0 0 16 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <g clip-path="url(#clip0_5543_19751)">
+                          <path d="M0 8.5H16V12.5H0V8.5Z" fill="#FFCE00"></path>
+                          <path d="M0 0.5H16V4.5H0V0.5Z" fill="black"></path>
+                          <path d="M0 4.5H16V8.5H0V4.5Z" fill="#DD0000"></path>
+                        </g>
+                        <defs>
+                          <clippath id="clip0_5543_19751">
+                            <rect width="16" height="12" fill="white" transform="translate(0 0.5)"></rect>
+                          </clippath>
+                        </defs>
+                      </svg>
+                    </span>Deutsch</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  <!-- Scripts -->
+  <!-- Libs JS -->
+<script src="../../assets/libs/jquery/dist/jquery.min-1.js"></script>
+<script src="../../assets/libs/bootstrap/dist/js/bootstrap.bundle.min-1.js"></script>
+<script src="../../assets/libs/simplebar/dist/simplebar.min-1.js"></script>
+
+
+<!-- Theme JS -->
+<script src="../../assets/js/theme.min-1.js"></script>
+
+
+
+
+  <script src="../../assets/libs/tiny-slider/dist/min/tiny-slider-1.js"></script>
+    <script src="../../assets/js/vendors/tnsSlider-1.js"></script>
+    <script src="../../assets/libs/magnific-popup/dist/jquery.magnific-popup.min-1.js"></script>
+<script src="../../assets/js/vendors/popup-1.js"></script>
+
+</body>
+
+</html>
